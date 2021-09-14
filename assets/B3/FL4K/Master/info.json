@@ -1,0 +1,128 @@
+[
+    {
+        "name": "Gamma Burst",
+        "treeLevel": 0,
+        "image": "assets/B3/FL4K/Master/images/GammaBurst.png",
+        "perkType": "ActionSkill"
+    },
+    {
+        "name": "Guard Skag",
+        "treeLevel": 0,
+        "image": "assets/B3/FL4K/Master/images/GuardSkag.png",
+        "perkType": "Pet"
+    },
+    {
+        "name": "Ferocity",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Master/images/Ferocity.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Persistence Hunter",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Master/images/PersistenceHunter.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Go for the Eyes!",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Master/images/GoForTheEyes.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Atomic Aroma",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Master/images/AtomicAroma.png",
+        "perkType": "Augment"
+    },
+    {
+        "name": "Who Rescued Who?",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Master/images/WhoRescuedWho.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "He Bites!",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Master/images/HeBites.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Frenzy",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Master/images/Frenzy.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Empathic Rage",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Master/images/EmpathicRage.png",
+        "perkType": "Augment"
+    },
+    {
+        "name": "Psycho Head on a Stick",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Master/images/PsychoHeadOnAStick.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Hive Mind",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Master/images/HiveMind.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Great Horned Skag",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Master/images/GreatHornedSkag.png",
+        "perkType": "Pet"
+    },
+    {
+        "name": "Endurance",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Master/images/Endurance.png",
+        "perkType": "Augment"
+    },
+    {
+        "name": "Barbaric Yawp",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Master/images/BarbaricYawp.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Mutated Defenses",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Master/images/MutatedDefenses.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Eridian Skag",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Master/images/EridianSkag.png",
+        "perkType": "Pet"
+    },
+    {
+        "name": "Burst Aid",
+        "treeLevel": 5,
+        "image": "assets/B3/FL4K/Master/images/BurstAid.png",
+        "perkType": "Augment"
+    },
+    {
+        "name": "Pack Tactics",
+        "treeLevel": 5,
+        "image": "assets/B3/FL4K/Master/images/PackTactics.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Shared Spirit",
+        "treeLevel": 5,
+        "image": "assets/B3/FL4K/Master/images/SharedSpirit.png",
+        "perkType": "Passive"
+    },
+    {
+        "name": "Dominance",
+        "treeLevel": 6,
+        "image": "assets/B3/FL4K/Master/images/Dominance.png",
+        "perkType": "Passive"
+    }
+]
