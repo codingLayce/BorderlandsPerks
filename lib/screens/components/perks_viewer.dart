@@ -1,14 +1,21 @@
 import 'package:borderlands_perks/models/character.dart';
 import 'package:borderlands_perks/models/perks.dart';
 import 'package:borderlands_perks/screens/components/perk_viewer.dart';
+import 'package:borderlands_perks/services/perks_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
+import 'package:provider/provider.dart';
 
 class PerksViewer extends StatefulWidget {
   final Character character;
+  final Perks perks;
   final int tree;
 
-  const PerksViewer({required this.character, required this.tree, Key? key})
+  const PerksViewer(
+      {required this.character,
+      required this.perks,
+      required this.tree,
+      Key? key})
       : super(key: key);
 
   @override
@@ -16,61 +23,19 @@ class PerksViewer extends StatefulWidget {
 }
 
 class _PerksViewer extends State<PerksViewer> {
-  late Perks perks;
-  bool loading = true;
-  String error = "";
-
-  @override
-  void initState() {
-    super.initState();
-    loadPerks();
-  }
-
-  void loadPerks() async {
-    widget.character.loadTree(widget.tree).then((value) {
-      perks = value;
-      setState(() {
-        loading = false;
-      });
-    }).onError((error, stackTrace) {
-      setState(() {
-        perks = Perks(perks: []);
-        loading = false;
-        this.error = error.toString();
-      });
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Container(
-        decoration: BoxDecoration(color: _getBackgroundColor()),
-        child: Align(
-            alignment: Alignment.center,
-            child: loading
-                ? const CircularProgressIndicator()
-                : _getErrorOrPerkTree()));
-  }
-
-  Widget _getErrorOrPerkTree() {
-    if (!loading && error == "") return _buildPerkTree();
-    return _buildError();
-  }
-
-  Widget _buildError() {
-    return Center(
-        child: Text("Error: $error",
-            style: const TextStyle(
-                fontFamily: "Roboto",
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-                color: Colors.red)));
+    return Consumer<PerksManager>(builder: (context, state, child) {
+      return Container(
+          decoration: BoxDecoration(color: _getBackgroundColor()),
+          child: Align(alignment: Alignment.center, child: _buildPerkTree()));
+    });
   }
 
   Widget _buildPerkTree() {
     Map<int, Widget> content = <int, Widget>{};
 
-    perks.getPerks().forEach((treeLevel, levelPerks) {
+    widget.perks.getPerks().forEach((treeLevel, levelPerks) {
       content[treeLevel] = SizedBox(
           height: 100,
           child: Row(
@@ -87,13 +52,13 @@ class _PerksViewer extends State<PerksViewer> {
 
   Color _getBackgroundColor() {
     switch (widget.tree) {
-      case 1:
+      case 0:
         return app_colors.firstTreeColor;
-      case 2:
+      case 1:
         return app_colors.secondTreeColor;
-      case 3:
+      case 2:
         return app_colors.thirdTreeColor;
-      case 4:
+      case 3:
         return app_colors.fourthTreeColor;
       default:
         return app_colors.primaryBackgroundColor;

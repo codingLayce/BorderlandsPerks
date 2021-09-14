@@ -1,4 +1,5 @@
 import 'package:borderlands_perks/models/perk.dart';
+import 'package:borderlands_perks/screens/components/error.dart';
 import 'package:borderlands_perks/services/perks_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
@@ -15,10 +16,17 @@ class PerkViewer extends StatelessWidget {
       return Expanded(
           child: GestureDetector(
               onTap: () {
-                state.assignSkillPoint(perk);
+                if (!state.assignSkillPoint(perk)) {
+                  ScaffoldMessenger.of(context).showSnackBar(Error.getSnackBar(
+                      context, "Cannot assign skill point to that perk !"));
+                }
               },
               onDoubleTap: () {
-                state.removeSkillPoint(perk);
+                if (!state.removeSkillPoint(perk)) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Error(
+                          error: "Cannot remove skill point on that perk")));
+                }
               },
               onLongPress: () {
                 showPopover(
@@ -29,8 +37,9 @@ class PerkViewer extends StatelessWidget {
                     height: 250,
                     bodyBuilder: (context) => Popover(perk: perk));
               },
-              child:
-                  state.isSelected(perk) ? _colorizedImage() : _normalImage()));
+              child: state.isSelected(perk.id)
+                  ? _colorizedImage()
+                  : _normalImage()));
     });
   }
 

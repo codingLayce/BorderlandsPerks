@@ -18,23 +18,36 @@ extension Fl4kPerkTypeString on Fl4kPerkType {
 }
 
 class Perk {
+  final int id;
   final String name;
   final int treeLevel;
   final String image;
   final Fl4kPerkType perkType;
 
   const Perk(
-      {required this.name,
+      {required this.id,
+      required this.name,
       required this.treeLevel,
       required this.image,
       required this.perkType});
 
   factory Perk.fromJson(dynamic json) {
     return Perk(
+        id: json['id'],
         name: json['name'],
         treeLevel: json['treeLevel'],
         image: json['image'],
         perkType: parseFl4kPerkType(json['perkType']));
+  }
+
+  bool canAddSkillPoint(int currentPoints) {
+    if (perkType == Fl4kPerkType.actionSkill ||
+        perkType == Fl4kPerkType.augment ||
+        perkType == Fl4kPerkType.pet) {
+      return false;
+    }
+
+    return true;
   }
 
   int compareTo(Perk other) {
@@ -42,20 +55,10 @@ class Perk {
   }
 
   @override
-  String toString() {
-    return "$name $treeLevel $image";
-  }
+  bool operator ==(other) => other is Perk && id == other.id;
 
   @override
-  bool operator ==(other) =>
-      other is Perk &&
-      name == other.name &&
-      treeLevel == other.treeLevel &&
-      image == other.image &&
-      perkType == other.perkType;
-
-  @override
-  int get hashCode => name.hashCode;
+  int get hashCode => id.hashCode;
 }
 
 Fl4kPerkType parseFl4kPerkType(String value) {
