@@ -16,9 +16,10 @@ class PerkViewer extends StatelessWidget {
       return Expanded(
           child: GestureDetector(
               onTap: () {
-                if (!state.assignSkillPoint(perk)) {
+                String error = state.assignSkillPoint(perk);
+                if (error != "") {
                   ScaffoldMessenger.of(context).showSnackBar(Error.getSnackBar(
-                      context, "Cannot assign skill point to that perk !"));
+                      context, error));
                 }
               },
               onDoubleTap: () {

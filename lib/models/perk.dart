@@ -17,6 +17,8 @@ extension Fl4kPerkTypeString on Fl4kPerkType {
   }
 }
 
+const skillPointsPerLevel = 5;
+
 class Perk {
   final int id;
   final String name;
@@ -48,6 +50,11 @@ class Perk {
     }
 
     return true;
+  }
+
+  int skillPointsNeededToBeActivate() {
+    if (treeLevel == 0) return 0;
+    return (treeLevel - 1) * skillPointsPerLevel;
   }
 
   int compareTo(Perk other) {

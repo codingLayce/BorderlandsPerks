@@ -43,15 +43,19 @@ class PerksManager extends ChangeNotifier {
     return _perks.elementAt(index);
   }
 
-  bool assignSkillPoint(Perk perk) {
-    if (_skillsPoint == 0) return false;
+  String assignSkillPoint(Perk perk) {
+    if (_skillsPoint == 0) return "No more skill points";
+
+    if (maxSkillsPoint - skillsPoint < perk.skillPointsNeededToBeActivate()) {
+      return "Not enough skill points used to unlock";
+    }
 
     --_skillsPoint;
     if (_selectedPerks.containsKey(perk.id)) {
       if (perk.canAddSkillPoint(_selectedPerks[perk.id]!)) {
         _selectedPerks[perk.id] = _selectedPerks[perk.id]! + 1;
       } else {
-        return false;
+        return "Perk has reached is maximum";
       }
     } else {
       _selectedPerks[perk.id] = 1;
@@ -59,7 +63,7 @@ class PerksManager extends ChangeNotifier {
 
     notifyListeners();
 
-    return true;
+    return "";
   }
 
   bool removeSkillPoint(Perk perk) {
