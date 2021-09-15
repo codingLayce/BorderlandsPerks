@@ -5,7 +5,25 @@
         "image": "assets/B3/FL4K/Master/images/GammaBurst.png",
         "perkType": "ActionSkill",
         "id": 0,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Creates a rift at target location and teleports pet there. The rift deals radiation damage to nearby enemies. Pet becomes irradiated, dealing additional radiation damage when attacking. Can also revive pet, but this doubles follow up cooldown time."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "flat",
+                "values": [56]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "values": [20]
+            },
+            {
+                "name": "Cooldown",
+                "unit": "seconds",
+                "values": [30]
+            }
+        ]
     },
     {
         "name": "Guard Skag",
@@ -13,7 +31,8 @@
         "image": "assets/B3/FL4K/Master/images/GuardSkag.png",
         "perkType": "Pet",
         "id": 1,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Summons a pet skag. FL4K gains increased damage while accompanied by the skag.", "Attack Command: the skag vomits acid at enemies."]
     },
     {
         "name": "Ferocity",
@@ -21,7 +40,15 @@
         "image": "assets/B3/FL4K/Master/images/Ferocity.png",
         "perkType": "Passive",
         "id": 2,
-        "maxPoints": 5
+        "maxPoints": 5,
+        "description": ["Increases pet damage."],
+        "attributs": [
+            {
+                "name": "Pet Damage",
+                "unit": "percentage",
+                "values": [10, 20, 30, 40, 50]
+            }
+        ]
     },
     {
         "name": "Persistence Hunter",
@@ -29,7 +56,8 @@
         "image": "assets/B3/FL4K/Master/images/PersistenceHunter.png",
         "perkType": "Passive",
         "id": 3,
-        "maxPoints": 3
+        "maxPoints": 3,
+        "description": ["Increases FL4K's gun damage and Action Skill duration."]
     },
     {
         "name": "Go for the Eyes!",
@@ -37,7 +65,8 @@
         "image": "assets/B3/FL4K/Master/images/GoForTheEyes.png",
         "perkType": "Passive",
         "id": 4,
-        "maxPoints": 5
+        "maxPoints": 5,
+        "description": ["Pet's first melee attack against an enemy is always a critical hit which gains bonus critical damage."]
     },
     {
         "name": "Atomic Aroma",
@@ -45,7 +74,8 @@
         "image": "assets/B3/FL4K/Master/images/AtomicAroma.png",
         "perkType": "Augment",
         "id": 5,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Pet is surrounded by radiation aura that constantly damages nearby enemies. Requires Gamma Burst."]
     },
     {
         "name": "Who Rescued Who?",
@@ -53,7 +83,8 @@
         "image": "assets/B3/FL4K/Master/images/WhoRescuedWho.png",
         "perkType": "Passive",
         "id": 6,
-        "maxPoints": 5
+        "maxPoints": 5,
+        "description": ["FL4K briefly regenerates health when pet deals damage. Pet instantly gains some health when FL4K deals damage."]
     },
     {
         "name": "He Bites!",
@@ -61,7 +92,8 @@
         "image": "assets/B3/FL4K/Master/images/HeBites.png",
         "perkType": "Passive",
         "id": 7,
-        "maxPoints": 3
+        "maxPoints": 3,
+        "description": ["Pet can reflect a portion of damage it takes back at enemies."]
     },
     {
         "name": "Frenzy",
@@ -69,7 +101,8 @@
         "image": "assets/B3/FL4K/Master/images/Frenzy.png",
         "perkType": "Passive",
         "id": 8,
-        "maxPoints": 5
+        "maxPoints": 5,
+        "description": ["Hunter Skill. When pet deals damage, both FL4K and pet gain a stack of Frenzy, which increases damage."]
     },
     {
         "name": "Empathic Rage",
@@ -77,7 +110,8 @@
         "image": "assets/B3/FL4K/Master/images/EmpathicRage.png",
         "perkType": "Augment",
         "id": 9,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["FL4K deals increased damage while Gamma Burst is active. Requires Gamma Burst."]
     },
     {
         "name": "Psycho Head on a Stick",
@@ -85,7 +119,8 @@
         "image": "assets/B3/FL4K/Master/images/PsychoHeadOnAStick.png",
         "perkType": "Passive",
         "id": 10,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Hunter Kill Skill. Pet gains increased movement speed and damage after FL4K kills an enemy."]
     },
     {
         "name": "Hive Mind",
@@ -93,7 +128,8 @@
         "image": "assets/B3/FL4K/Master/images/HiveMind.png",
         "perkType": "Passive",
         "id": 11,
-        "maxPoints": 3
+        "maxPoints": 3,
+        "description": ["A portion of damage dealt to FL4K is inflicted on pet instead."]
     },
     {
         "name": "Great Horned Skag",
@@ -101,7 +137,9 @@
         "image": "assets/B3/FL4K/Master/images/GreatHornedSkag.png",
         "perkType": "Pet",
         "id": 12,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Pet skag is upgraded to Horned skag. FL4K gains increased damage while accompanied by the horned skag.",
+        "Attack Command: the skag charges at enemies and knocks them into the air."]
     },
     {
         "name": "Endurance",
@@ -109,7 +147,8 @@
         "image": "assets/B3/FL4K/Master/images/Endurance.png",
         "perkType": "Augment",
         "id": 13,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Each kill made by FL4K or pet extends Gamma Burst's duration and increases pet damage."]
     },
     {
         "name": "Barbaric Yawp",
@@ -117,7 +156,8 @@
         "image": "assets/B3/FL4K/Master/images/BarbaricYawp.png",
         "perkType": "Passive",
         "id": 14,
-        "maxPoints": 5
+        "maxPoints": 5,
+        "description": ["Increases all pet bonuses for FL4K."]
     },
     {
         "name": "Mutated Defenses",
@@ -125,7 +165,8 @@
         "image": "assets/B3/FL4K/Master/images/MutatedDefenses.png",
         "perkType": "Passive",
         "id": 15,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Pet gains damage reduction and is partially healed when health falls below a certain threshold."]
     },
     {
         "name": "Eridian Skag",
@@ -133,7 +174,8 @@
         "image": "assets/B3/FL4K/Master/images/EridianSkag.png",
         "perkType": "Pet",
         "id": 16,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Pet skag is upgraded to Eridian skag. FL4K gains increased damage and fire rate while accompanied by the Eridian skag.", "Attack Command: the skag generates a singularity, pulling nearby enemies in."]
     },
     {
         "name": "Burst Aid",
@@ -141,7 +183,8 @@
         "image": "assets/B3/FL4K/Master/images/BurstAid.png",
         "perkType": "Augment",
         "id": 17,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Rift created by Gamma Burst remains for the full duration of the skill. FL4K and allies near the rift rapidly regenerate health. Requires Gamma Burst."]
     },
     {
         "name": "Pack Tactics",
@@ -149,7 +192,8 @@
         "image": "assets/B3/FL4K/Master/images/PackTactics.png",
         "perkType": "Passive",
         "id": 18,
-        "maxPoints": 3
+        "maxPoints": 3,
+        "description": ["FL4K and Pet gain increased maximum health and damage."]
     },
     {
         "name": "Shared Spirit",
@@ -157,7 +201,8 @@
         "image": "assets/B3/FL4K/Master/images/SharedSpirit.png",
         "perkType": "Passive",
         "id": 19,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["When FL4K is at low health, a portion of damage they take is inflicted on pet instead."]
     },
     {
         "name": "Dominance",
@@ -165,6 +210,7 @@
         "image": "assets/B3/FL4K/Master/images/Dominance.png",
         "perkType": "Passive",
         "id": 20,
-        "maxPoints": 1
+        "maxPoints": 1,
+        "description": ["Turns an enemy into an ally. Duration is doubled against a beast target. Target constantly loses health while dominated. Only one enemy can be dominated at a time, and each enemy can be dominated only once."]
     }
 ]

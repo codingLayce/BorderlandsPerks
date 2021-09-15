@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:borderlands_perks/models/character.dart';
 import 'package:borderlands_perks/models/perks.dart';
 import 'package:borderlands_perks/screens/components/global_perks.dart';

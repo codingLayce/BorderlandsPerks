@@ -1,3 +1,5 @@
+import 'package:borderlands_perks/models/attribut.dart';
+
 enum Fl4kPerkType { actionSkill, pet, augment, passive, unknown }
 
 extension Fl4kPerkTypeString on Fl4kPerkType {
@@ -26,6 +28,8 @@ class Perk {
   final String image;
   final Fl4kPerkType perkType;
   final int maxPoints;
+  final List<String> description;
+  final List<Attribut> attributs;
 
   const Perk(
       {required this.id,
@@ -33,16 +37,26 @@ class Perk {
       required this.treeLevel,
       required this.image,
       required this.perkType,
-      required this.maxPoints});
+      required this.maxPoints,
+      required this.description,
+      this.attributs = const []});
 
   factory Perk.fromJson(dynamic json) {
+    List<Attribut> attribs = [];
+    if (json['attributs'] != null) {
+      var list = json['attributs'] as List;
+      attribs = list.map((attribut) => Attribut.fromJson(attribut)).toList();
+    }
+
     return Perk(
         id: json['id'],
         name: json['name'],
         treeLevel: json['treeLevel'],
         image: json['image'],
         perkType: parseFl4kPerkType(json['perkType']),
-        maxPoints: json['maxPoints']);
+        maxPoints: json['maxPoints'],
+        description: (json['description'] as List<dynamic>).cast<String>(),
+        attributs: attribs);
   }
 
   bool isLocked(int usedPoints) {

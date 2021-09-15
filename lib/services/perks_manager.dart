@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:borderlands_perks/models/attribut.dart';
 import 'package:borderlands_perks/models/perk.dart';
 import 'package:borderlands_perks/models/perks.dart';
 import 'package:flutter/material.dart';

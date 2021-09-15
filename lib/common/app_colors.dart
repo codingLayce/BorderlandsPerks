@@ -6,6 +6,7 @@ const thirdTreeColor = Color.fromRGBO(121, 81, 49, 1.0);
 const fourthTreeColor = Color.fromRGBO(76, 18, 97, 1.0);
 
 const textColor = Color.fromRGBO(0, 0, 0, 0.6);
+const textAttributColor = Color.fromRGBO(241, 196, 15, 1.0);
 
 const primaryBackgroundColor = Color.fromRGBO(243, 242, 239, 1.0);
 const Map<int, Color> _clouds = {
