@@ -4,146 +4,167 @@
         "treeLevel": 0,
         "image": "assets/B3/FL4K/Master/images/GammaBurst.png",
         "perkType": "ActionSkill",
-        "id": 0
+        "id": 0,
+        "maxPoints": 1
     },
     {
         "name": "Guard Skag",
         "treeLevel": 0,
         "image": "assets/B3/FL4K/Master/images/GuardSkag.png",
         "perkType": "Pet",
-        "id": 1
+        "id": 1,
+        "maxPoints": 1
     },
     {
         "name": "Ferocity",
         "treeLevel": 1,
         "image": "assets/B3/FL4K/Master/images/Ferocity.png",
         "perkType": "Passive",
-        "id": 2
+        "id": 2,
+        "maxPoints": 5
     },
     {
         "name": "Persistence Hunter",
         "treeLevel": 1,
         "image": "assets/B3/FL4K/Master/images/PersistenceHunter.png",
         "perkType": "Passive",
-        "id": 3
+        "id": 3,
+        "maxPoints": 3
     },
     {
         "name": "Go for the Eyes!",
         "treeLevel": 1,
         "image": "assets/B3/FL4K/Master/images/GoForTheEyes.png",
         "perkType": "Passive",
-        "id": 4
+        "id": 4,
+        "maxPoints": 5
     },
     {
         "name": "Atomic Aroma",
         "treeLevel": 2,
         "image": "assets/B3/FL4K/Master/images/AtomicAroma.png",
         "perkType": "Augment",
-        "id": 5
+        "id": 5,
+        "maxPoints": 1
     },
     {
         "name": "Who Rescued Who?",
         "treeLevel": 2,
         "image": "assets/B3/FL4K/Master/images/WhoRescuedWho.png",
         "perkType": "Passive",
-        "id": 6
+        "id": 6,
+        "maxPoints": 5
     },
     {
         "name": "He Bites!",
         "treeLevel": 2,
         "image": "assets/B3/FL4K/Master/images/HeBites.png",
         "perkType": "Passive",
-        "id": 7
+        "id": 7,
+        "maxPoints": 3
     },
     {
         "name": "Frenzy",
         "treeLevel": 2,
         "image": "assets/B3/FL4K/Master/images/Frenzy.png",
         "perkType": "Passive",
-        "id": 8
+        "id": 8,
+        "maxPoints": 5
     },
     {
         "name": "Empathic Rage",
         "treeLevel": 3,
         "image": "assets/B3/FL4K/Master/images/EmpathicRage.png",
         "perkType": "Augment",
-        "id": 9
+        "id": 9,
+        "maxPoints": 1
     },
     {
         "name": "Psycho Head on a Stick",
         "treeLevel": 3,
         "image": "assets/B3/FL4K/Master/images/PsychoHeadOnAStick.png",
         "perkType": "Passive",
-        "id": 10
+        "id": 10,
+        "maxPoints": 1
     },
     {
         "name": "Hive Mind",
         "treeLevel": 3,
         "image": "assets/B3/FL4K/Master/images/HiveMind.png",
         "perkType": "Passive",
-        "id": 11
+        "id": 11,
+        "maxPoints": 3
     },
     {
         "name": "Great Horned Skag",
         "treeLevel": 3,
         "image": "assets/B3/FL4K/Master/images/GreatHornedSkag.png",
         "perkType": "Pet",
-        "id": 12
+        "id": 12,
+        "maxPoints": 1
     },
     {
         "name": "Endurance",
         "treeLevel": 4,
         "image": "assets/B3/FL4K/Master/images/Endurance.png",
         "perkType": "Augment",
-        "id": 13
+        "id": 13,
+        "maxPoints": 1
     },
     {
         "name": "Barbaric Yawp",
         "treeLevel": 4,
         "image": "assets/B3/FL4K/Master/images/BarbaricYawp.png",
         "perkType": "Passive",
-        "id": 14
+        "id": 14,
+        "maxPoints": 5
     },
     {
         "name": "Mutated Defenses",
         "treeLevel": 4,
         "image": "assets/B3/FL4K/Master/images/MutatedDefenses.png",
         "perkType": "Passive",
-        "id": 15
+        "id": 15,
+        "maxPoints": 1
     },
     {
         "name": "Eridian Skag",
         "treeLevel": 4,
         "image": "assets/B3/FL4K/Master/images/EridianSkag.png",
         "perkType": "Pet",
-        "id": 16
+        "id": 16,
+        "maxPoints": 1
     },
     {
         "name": "Burst Aid",
         "treeLevel": 5,
         "image": "assets/B3/FL4K/Master/images/BurstAid.png",
         "perkType": "Augment",
-        "id": 17
+        "id": 17,
+        "maxPoints": 1
     },
     {
         "name": "Pack Tactics",
         "treeLevel": 5,
         "image": "assets/B3/FL4K/Master/images/PackTactics.png",
         "perkType": "Passive",
-        "id": 18
+        "id": 18,
+        "maxPoints": 3
     },
     {
         "name": "Shared Spirit",
         "treeLevel": 5,
         "image": "assets/B3/FL4K/Master/images/SharedSpirit.png",
         "perkType": "Passive",
-        "id": 19
+        "id": 19,
+        "maxPoints": 1
     },
     {
         "name": "Dominance",
         "treeLevel": 6,
         "image": "assets/B3/FL4K/Master/images/Dominance.png",
         "perkType": "Passive",
-        "id": 20
+        "id": 20,
+        "maxPoints": 1
     }
 ]

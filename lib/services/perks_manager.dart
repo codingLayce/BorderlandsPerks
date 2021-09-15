@@ -5,7 +5,7 @@ import 'package:borderlands_perks/models/perks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-const maxSkillsPoint = 70;
+const int maxSkillsPoint = 70;
 
 class PerksManager extends ChangeNotifier {
   int _skillsPoint = maxSkillsPoint;
@@ -17,6 +17,7 @@ class PerksManager extends ChangeNotifier {
 
   Perks get perks => _perks[0];
   int get skillsPoint => _skillsPoint;
+  int get _usedPoints => maxSkillsPoint - _skillsPoint;
 
   void load(List<String> paths) async {
     loading = true;
@@ -43,22 +44,34 @@ class PerksManager extends ChangeNotifier {
     return _perks.elementAt(index);
   }
 
+  bool isPerkLocked(Perk perk) {
+    return perk.isLocked(_usedPoints);
+  }
+
+  int getAssignedPoints(Perk perk) {
+    if (_selectedPerks.containsKey(perk.id)) {
+      return _selectedPerks[perk.id]!;
+    }
+    return 0;
+  }
+
   String assignSkillPoint(Perk perk) {
     if (_skillsPoint == 0) return "No more skill points";
 
-    if (maxSkillsPoint - skillsPoint < perk.skillPointsNeededToBeActivate()) {
+    if (perk.isLocked(_usedPoints)) {
       return "Not enough skill points used to unlock";
     }
 
-    --_skillsPoint;
     if (_selectedPerks.containsKey(perk.id)) {
       if (perk.canAddSkillPoint(_selectedPerks[perk.id]!)) {
         _selectedPerks[perk.id] = _selectedPerks[perk.id]! + 1;
+        --_skillsPoint;
       } else {
         return "Perk has reached is maximum";
       }
     } else {
       _selectedPerks[perk.id] = 1;
+      --_skillsPoint;
     }
 
     notifyListeners();

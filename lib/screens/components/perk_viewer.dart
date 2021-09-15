@@ -18,8 +18,8 @@ class PerkViewer extends StatelessWidget {
               onTap: () {
                 String error = state.assignSkillPoint(perk);
                 if (error != "") {
-                  ScaffoldMessenger.of(context).showSnackBar(Error.getSnackBar(
-                      context, error));
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(Error.getSnackBar(context, error));
                 }
               },
               onDoubleTap: () {
@@ -38,20 +38,45 @@ class PerkViewer extends StatelessWidget {
                     height: 250,
                     bodyBuilder: (context) => Popover(perk: perk));
               },
-              child: state.isSelected(perk.id)
-                  ? _colorizedImage()
-                  : _normalImage()));
+              child: _perk(state)));
     });
   }
 
-  _colorizedImage() {
+  _perk(PerksManager state) {
+    return Column(children: [
+      state.isSelected(perk.id) ? _selectedPerk() : _notSelectedPerk(state),
+      const SizedBox(height: 5),
+      RichText(
+          text: TextSpan(children: [
+        TextSpan(
+            text: "${state.getAssignedPoints(perk)} ",
+            style: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: state.getAssignedPoints(perk) == 0
+                    ? Colors.red
+                    : state.getAssignedPoints(perk) == perk.maxPoints
+                        ? Colors.green
+                        : Colors.white)),
+        TextSpan(text: "/ ${perk.maxPoints}")
+      ]))
+    ]);
+  }
+
+  _selectedPerk() {
     return ColorFiltered(
         colorFilter:
             const ColorFilter.mode(Colors.lightGreenAccent, BlendMode.modulate),
         child: Image.asset(perk.image));
   }
 
-  _normalImage() {
+  _notSelectedPerk(PerksManager state) {
+    if (state.isPerkLocked(perk)) {
+      return ColorFiltered(
+          colorFilter: const ColorFilter.mode(
+              Color.fromRGBO(100, 100, 100, 0.6), BlendMode.modulate),
+          child: Image.asset(perk.image));
+    }
+
     return Image.asset(perk.image);
   }
 }

@@ -25,13 +25,15 @@ class Perk {
   final int treeLevel;
   final String image;
   final Fl4kPerkType perkType;
+  final int maxPoints;
 
   const Perk(
       {required this.id,
       required this.name,
       required this.treeLevel,
       required this.image,
-      required this.perkType});
+      required this.perkType,
+      required this.maxPoints});
 
   factory Perk.fromJson(dynamic json) {
     return Perk(
@@ -39,17 +41,22 @@ class Perk {
         name: json['name'],
         treeLevel: json['treeLevel'],
         image: json['image'],
-        perkType: parseFl4kPerkType(json['perkType']));
+        perkType: parseFl4kPerkType(json['perkType']),
+        maxPoints: json['maxPoints']);
   }
 
-  bool canAddSkillPoint(int currentPoints) {
+  bool isLocked(int usedPoints) {
+    return usedPoints < skillPointsNeededToBeActivate();
+  }
+
+  bool canAddSkillPoint(int currentAssignedPoints) {
     if (perkType == Fl4kPerkType.actionSkill ||
         perkType == Fl4kPerkType.augment ||
         perkType == Fl4kPerkType.pet) {
       return false;
     }
 
-    return true;
+    return currentAssignedPoints < maxPoints;
   }
 
   int skillPointsNeededToBeActivate() {
