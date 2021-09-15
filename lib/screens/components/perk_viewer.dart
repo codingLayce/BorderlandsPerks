@@ -1,4 +1,5 @@
 import 'package:borderlands_perks/models/perk.dart';
+import 'package:borderlands_perks/screens/components/zoom_animation_wrapper.dart';
 import 'package:borderlands_perks/screens/components/error.dart';
 import 'package:borderlands_perks/services/perks_manager.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class PerkViewer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PerksManager>(builder: (context, state, child) {
       return Expanded(
-          child: GestureDetector(
+          child: ZoomAnimationWrapper(
               onTap: () {
                 String error = state.assignSkillPoint(perk);
                 if (error != "") {
