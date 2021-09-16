@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:borderlands_perks/models/active_attribut.dart';
 import 'package:borderlands_perks/models/attribut.dart';
 import 'package:borderlands_perks/models/perk.dart';
 import 'package:borderlands_perks/models/perks.dart';
@@ -98,5 +99,61 @@ class PerksManager extends ChangeNotifier {
 
   bool isSelected(int perkID) {
     return _selectedPerks.containsKey(perkID);
+  }
+
+  List<ActiveAttribut> getActiveAttributs() {
+    List<Perk> selectedPerks = _getSelectedPerks();
+    Map<String, List<ActiveAttribut>> values = <String, List<ActiveAttribut>>{};
+
+    for (var perk in selectedPerks) {
+      for (var attrib in perk.attributs) {
+        var currentValue =
+            _getAttribCurrentValue(_selectedPerks[perk.id]!, attrib);
+
+        if (!values.containsKey(attrib.name)) {
+          values[attrib.name] = [];
+        }
+        values[attrib.name]!.add(ActiveAttribut(
+            name: attrib.name,
+            unit: attrib.unit,
+            value: currentValue,
+            activation: attrib.activation));
+      }
+    }
+
+    List<ActiveAttribut> toReturn = [];
+    values.forEach((key, list) {
+      num value = 0;
+
+      for (var val in list) {
+        value = value + val.value;
+      }
+
+      toReturn.add(ActiveAttribut(
+          name: key,
+          unit: list[0].unit,
+          value: value,
+          activation: list[0].activation));
+    });
+
+    return toReturn;
+  }
+
+  num _getAttribCurrentValue(int level, Attribut attrib) {
+    if (attrib.values.length == 1) {
+      return attrib.values[0];
+    }
+    return attrib.values[level - 1];
+  }
+
+  List<Perk> _getSelectedPerks() {
+    List<Perk> toReturn = [];
+
+    for (var perks in _perks) {
+      toReturn.addAll(
+          perks.perks.where((perk) => _selectedPerks.containsKey(perk.id)));
+    }
+
+    return toReturn;
   }
 }

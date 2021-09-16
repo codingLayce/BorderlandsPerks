@@ -1,7 +1,8 @@
 import 'package:borderlands_perks/models/character.dart';
 import 'package:borderlands_perks/models/perks.dart';
 import 'package:borderlands_perks/screens/components/global_perks.dart';
-import 'package:borderlands_perks/screens/components/perks_viewer.dart';
+import 'package:borderlands_perks/screens/pages/perks_resume.dart';
+import 'package:borderlands_perks/screens/pages/perks_viewer.dart';
 import 'package:borderlands_perks/services/perks_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
@@ -29,7 +30,8 @@ class _CharacterViewer extends State<CharacterViewer> {
             state.load(widget.character.getPaths());
           }
 
-          List<PerksViewer> views = [];
+          List<Widget> views = [];
+          views.add(const PerksResume(character: Character.fl4k));
           for (int i = 0; i < 4; i++) {
             Perks? perks = state.getPerks(i);
             if (perks != null) {

@@ -162,15 +162,15 @@ class Popover extends StatelessWidget {
   }
 
   String _getValues(PerksManager state, Attribut attrib, bool next) {
+    if (attrib.values.length == 1) {
+      return _getFirstAttribValue(attrib);
+    }
+
     if (state.isSelected(perk.id)) {
       if (next) {
         return _getNextAttribValue(state, attrib);
       }
       return _getCurrentAttribValue(state, attrib);
-    }
-
-    if (attrib.values.length == 1) {
-      return _getFirstAttribValue(attrib);
     }
 
     return _getAttribValues(attrib);
@@ -196,25 +196,35 @@ class Popover extends StatelessWidget {
   }
 
   String _getFirstAttribValue(Attribut attrib) {
-    return "${attrib.values[0]} ${attrib.unit.ext}";
+    String val = "${attrib.values[0]} ${attrib.unit.ext}";
+    return _checkAndFormatPositivePercentage(
+        val, attrib.unit, attrib.values[0]);
   }
 
   String _getCurrentAttribValue(PerksManager state, Attribut attrib) {
     int level = state.getAssignedPoints(perk);
-    return "${attrib.values[level - 1]} ${attrib.unit.ext}";
+    String val = "${attrib.values[level - 1]} ${attrib.unit.ext}";
+    return _checkAndFormatPositivePercentage(
+        val, attrib.unit, attrib.values[level - 1]);
   }
 
   String _getNextAttribValue(PerksManager state, Attribut attrib) {
     int level = state.getAssignedPoints(perk);
-    return "${attrib.values[level]} ${attrib.unit.ext}";
+    String val = "${attrib.values[level]} ${attrib.unit.ext}";
+    return _checkAndFormatPositivePercentage(
+        val, attrib.unit, attrib.values[level]);
+  }
+
+  String _checkAndFormatPositivePercentage(
+      String val, AttributUnitType unit, num value) {
+    if (unit == AttributUnitType.percentage && value > 0) {
+      return "+$val";
+    }
+    return val;
   }
 
   _separator() {
     return const Divider();
-  }
-
-  _spacing() {
-    return const SizedBox(height: 5);
   }
 
   _description(BuildContext context) {

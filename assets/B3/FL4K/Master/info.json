@@ -11,16 +11,19 @@
             {
                 "name": "Damage",
                 "unit": "flat",
+                "activation": "skill",
                 "values": [56]
             },
             {
                 "name": "Duration",
                 "unit": "seconds",
+                "activation": "skill",
                 "values": [20]
             },
             {
                 "name": "Cooldown",
                 "unit": "seconds",
+                "activation": "skill",
                 "values": [30]
             }
         ]
@@ -46,6 +49,7 @@
             {
                 "name": "Pet Damage",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [10, 20, 30, 40, 50]
             }
         ]
@@ -62,11 +66,13 @@
             {
                 "name": "Gun Damage",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [4, 8, 12]
             },
             {
                 "name": "Action Skill Duration",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [15, 30, 45]
             }
         ]
@@ -83,6 +89,7 @@
             {
                 "name": "Pet Critical Hit Damage",
                 "unit": "percentage",
+                "activation": "firstPetAttack",
                 "values": [15, 30, 45, 60, 75]
             }
         ]
@@ -99,6 +106,7 @@
             {
                 "name": "Damage",
                 "unit": "dot",
+                "activation": "always",
                 "values": [4]
             }
         ]
@@ -115,11 +123,13 @@
             {
                 "name": "Health Regeneration",
                 "unit": "percentage",
+                "activation": "petDealsDamage",
                 "values": [0.4, 0.8, 1.2, 1.6, 2]
             },
             {
                 "name": "Pet Health Restored",
                 "unit": "percentage",
+                "activation": "petDealsDamage",
                 "values": [1, 2, 3, 4, 5]
             }
         ]
@@ -136,6 +146,7 @@
             {
                 "name": "Damage Reflected",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [5, 10, 15]
             }
         ]
@@ -152,11 +163,13 @@
             {
                 "name": "Damage",
                 "unit": "percentage",
+                "activation": "petDealsDamage",
                 "values": [0.8, 1.6, 2.4, 3.2, 4]
             },
             {
                 "name": "Max Frenzy Stacks",
                 "unit": "stack",
+                "activation": "petDealsDamage",
                 "values": [10]
             }
         ]
@@ -173,6 +186,7 @@
             {
                 "name": "Damage",
                 "unit": "percentage",
+                "activation": "skill",
                 "values": [20]
             }
         ]
@@ -189,16 +203,19 @@
             {
                 "name": "Pet Movement Speed",
                 "unit": "percentage",
+                "activation": "enemyKill",
                 "values": [12]
             },
             {
                 "name": "Pet Damage",
                 "unit": "percentage",
+                "activation": "enemyKill",
                 "values": [20]
             },
             {
                 "name": "Duration",
                 "unit": "seconds",
+                "activation": "enemyKill",
                 "values": [8]
             }
         ]
@@ -215,6 +232,7 @@
             {
                 "name": "Damage Shared",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [5, 10, 15]
             }
         ]
@@ -232,11 +250,13 @@
             {
                 "name": "Damage",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [5]
             },
             {
                 "name": "Gun Damage",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [10]
             }
         ]
@@ -253,16 +273,19 @@
             {
                 "name": "Skill Duration",
                 "unit": "seconds",
+                "activation": "enemyKill",
                 "values": [3]
             },
             {
                 "name": "Pet Damage",
                 "unit": "percentage",
+                "activation": "enemyKill",
                 "values": [10]
             },
             {
                 "name": "Max Stacks",
                 "unit": "stack",
+                "activation": "enemyKill",
                 "values": [5]
             }
         ]
@@ -279,6 +302,7 @@
             {
                 "name": "Pet Bonuses",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [40, 80, 120, 160, 200]
             }
         ]
@@ -295,21 +319,25 @@
             {
                 "name": "Damage Reduction",
                 "unit": "percentage",
+                "activation": "petHealthAtValue",
                 "values": [30]
             },
             {
                 "name": "Duration",
                 "unit": "seconds",
+                "activation": "petHealthAtValue",
                 "values": [6]
             },
             {
                 "name": "Health Regeneration",
                 "unit": "percentage",
+                "activation": "petHealthAtValue",
                 "values": [40]
             },
             {
                 "name": "Cooldown",
                 "unit": "seconds",
+                "activation": "petHealthAtValue",
                 "values": [15]
             }
         ]
@@ -326,11 +354,13 @@
             {
                 "name": "Damage",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [5]
             },
             {
                 "name": "Fire Rate",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [5]
             }
         ]
@@ -347,6 +377,7 @@
             {
                 "name": "Health Regeneration",
                 "unit": "dot",
+                "activation": "skill",
                 "values": [20]
             }
         ]
@@ -363,11 +394,13 @@
             {
                 "name": "FL4K & Pet Damage",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [7, 14, 21]
             },
             {
-                "name": "FL4K & Per Maximum Health",
+                "name": "FL4K & Pet Maximum Health",
                 "unit": "percentage",
+                "activation": "always",
                 "values": [5, 10, 15]
             }
         ]
@@ -384,6 +417,7 @@
             {
                 "name": "Damage Shared",
                 "unit": "percentage",
+                "activation": "healthLow",
                 "values": [50]
             }
         ]
@@ -400,11 +434,13 @@
             {
                 "name": "Duration",
                 "unit": "seconds",
+                "activation": "skill",
                 "values": [12]
             },
             {
                 "name": "Target loses Max Health",
                 "unit": "dot",
+                "activation": "skill",
                 "values": [2]
             }
         ]
