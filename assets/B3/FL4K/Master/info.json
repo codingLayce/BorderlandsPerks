@@ -57,7 +57,19 @@
         "perkType": "Passive",
         "id": 3,
         "maxPoints": 3,
-        "description": ["Increases FL4K's gun damage and Action Skill duration."]
+        "description": ["Increases FL4K's gun damage and Action Skill duration."],
+        "attributs": [
+            {
+                "name": "Gun Damage",
+                "unit": "percentage",
+                "values": [4, 8, 12]
+            },
+            {
+                "name": "Action Skill Duration",
+                "unit": "percentage",
+                "values": [15, 30, 45]
+            }
+        ]
     },
     {
         "name": "Go for the Eyes!",
@@ -66,7 +78,14 @@
         "perkType": "Passive",
         "id": 4,
         "maxPoints": 5,
-        "description": ["Pet's first melee attack against an enemy is always a critical hit which gains bonus critical damage."]
+        "description": ["Pet's first melee attack against an enemy is always a critical hit which gains bonus critical damage."],
+        "attributs": [
+            {
+                "name": "Pet Critical Hit Damage",
+                "unit": "percentage",
+                "values": [15, 30, 45, 60, 75]
+            }
+        ]
     },
     {
         "name": "Atomic Aroma",
@@ -75,7 +94,14 @@
         "perkType": "Augment",
         "id": 5,
         "maxPoints": 1,
-        "description": ["Pet is surrounded by radiation aura that constantly damages nearby enemies. Requires Gamma Burst."]
+        "description": ["Pet is surrounded by radiation aura that constantly damages nearby enemies. Requires Gamma Burst."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "dot",
+                "values": [4]
+            }
+        ]
     },
     {
         "name": "Who Rescued Who?",
@@ -84,7 +110,19 @@
         "perkType": "Passive",
         "id": 6,
         "maxPoints": 5,
-        "description": ["FL4K briefly regenerates health when pet deals damage. Pet instantly gains some health when FL4K deals damage."]
+        "description": ["FL4K briefly regenerates health when pet deals damage. Pet instantly gains some health when FL4K deals damage."],
+        "attributs": [
+            {
+                "name": "Health Regeneration",
+                "unit": "percentage",
+                "values": [0.4, 0.8, 1.2, 1.6, 2]
+            },
+            {
+                "name": "Pet Health Restored",
+                "unit": "percentage",
+                "values": [1, 2, 3, 4, 5]
+            }
+        ]
     },
     {
         "name": "He Bites!",
@@ -93,7 +131,14 @@
         "perkType": "Passive",
         "id": 7,
         "maxPoints": 3,
-        "description": ["Pet can reflect a portion of damage it takes back at enemies."]
+        "description": ["Pet can reflect a portion of damage it takes back at enemies."],
+        "attributs": [
+            {
+                "name": "Damage Reflected",
+                "unit": "percentage",
+                "values": [5, 10, 15]
+            }
+        ]
     },
     {
         "name": "Frenzy",
@@ -102,7 +147,19 @@
         "perkType": "Passive",
         "id": 8,
         "maxPoints": 5,
-        "description": ["Hunter Skill. When pet deals damage, both FL4K and pet gain a stack of Frenzy, which increases damage."]
+        "description": ["Hunter Skill. When pet deals damage, both FL4K and pet gain a stack of Frenzy, which increases damage."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "percentage",
+                "values": [0.8, 1.6, 2.4, 3.2, 4]
+            },
+            {
+                "name": "Max Frenzy Stacks",
+                "unit": "stack",
+                "values": [10]
+            }
+        ]
     },
     {
         "name": "Empathic Rage",
@@ -111,7 +168,14 @@
         "perkType": "Augment",
         "id": 9,
         "maxPoints": 1,
-        "description": ["FL4K deals increased damage while Gamma Burst is active. Requires Gamma Burst."]
+        "description": ["FL4K deals increased damage while Gamma Burst is active. Requires Gamma Burst."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "percentage",
+                "values": [20]
+            }
+        ]
     },
     {
         "name": "Psycho Head on a Stick",
@@ -120,7 +184,24 @@
         "perkType": "Passive",
         "id": 10,
         "maxPoints": 1,
-        "description": ["Hunter Kill Skill. Pet gains increased movement speed and damage after FL4K kills an enemy."]
+        "description": ["Hunter Kill Skill. Pet gains increased movement speed and damage after FL4K kills an enemy."],
+        "attributs": [
+            {
+                "name": "Pet Movement Speed",
+                "unit": "percentage",
+                "values": [12]
+            },
+            {
+                "name": "Pet Damage",
+                "unit": "percentage",
+                "values": [20]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "values": [8]
+            }
+        ]
     },
     {
         "name": "Hive Mind",
@@ -129,7 +210,14 @@
         "perkType": "Passive",
         "id": 11,
         "maxPoints": 3,
-        "description": ["A portion of damage dealt to FL4K is inflicted on pet instead."]
+        "description": ["A portion of damage dealt to FL4K is inflicted on pet instead."],
+        "attributs": [
+            {
+                "name": "Damage Shared",
+                "unit": "percentage",
+                "values": [5, 10, 15]
+            }
+        ]
     },
     {
         "name": "Great Horned Skag",
@@ -139,7 +227,19 @@
         "id": 12,
         "maxPoints": 1,
         "description": ["Pet skag is upgraded to Horned skag. FL4K gains increased damage while accompanied by the horned skag.",
-        "Attack Command: the skag charges at enemies and knocks them into the air."]
+        "Attack Command: the skag charges at enemies and knocks them into the air."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "percentage",
+                "values": [5]
+            },
+            {
+                "name": "Gun Damage",
+                "unit": "percentage",
+                "values": [10]
+            }
+        ]
     },
     {
         "name": "Endurance",
@@ -148,7 +248,24 @@
         "perkType": "Augment",
         "id": 13,
         "maxPoints": 1,
-        "description": ["Each kill made by FL4K or pet extends Gamma Burst's duration and increases pet damage."]
+        "description": ["Each kill made by FL4K or pet extends Gamma Burst's duration and increases pet damage."],
+        "attributs": [
+            {
+                "name": "Skill Duration",
+                "unit": "seconds",
+                "values": [3]
+            },
+            {
+                "name": "Pet Damage",
+                "unit": "percentage",
+                "values": [10]
+            },
+            {
+                "name": "Max Stacks",
+                "unit": "stack",
+                "values": [5]
+            }
+        ]
     },
     {
         "name": "Barbaric Yawp",
@@ -157,7 +274,14 @@
         "perkType": "Passive",
         "id": 14,
         "maxPoints": 5,
-        "description": ["Increases all pet bonuses for FL4K."]
+        "description": ["Increases all pet bonuses for FL4K."],
+        "attributs": [
+            {
+                "name": "Pet Bonuses",
+                "unit": "percentage",
+                "values": [40, 80, 120, 160, 200]
+            }
+        ]
     },
     {
         "name": "Mutated Defenses",
@@ -166,7 +290,29 @@
         "perkType": "Passive",
         "id": 15,
         "maxPoints": 1,
-        "description": ["Pet gains damage reduction and is partially healed when health falls below a certain threshold."]
+        "description": ["Pet gains damage reduction and is partially healed when health falls below a certain threshold."],
+        "attributs": [
+            {
+                "name": "Damage Reduction",
+                "unit": "percentage",
+                "values": [30]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "values": [6]
+            },
+            {
+                "name": "Health Regeneration",
+                "unit": "percentage",
+                "values": [40]
+            },
+            {
+                "name": "Cooldown",
+                "unit": "seconds",
+                "values": [15]
+            }
+        ]
     },
     {
         "name": "Eridian Skag",
@@ -175,7 +321,19 @@
         "perkType": "Pet",
         "id": 16,
         "maxPoints": 1,
-        "description": ["Pet skag is upgraded to Eridian skag. FL4K gains increased damage and fire rate while accompanied by the Eridian skag.", "Attack Command: the skag generates a singularity, pulling nearby enemies in."]
+        "description": ["Pet skag is upgraded to Eridian skag. FL4K gains increased damage and fire rate while accompanied by the Eridian skag.", "Attack Command: the skag generates a singularity, pulling nearby enemies in."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "percentage",
+                "values": [5]
+            },
+            {
+                "name": "Fire Rate",
+                "unit": "percentage",
+                "values": [5]
+            }
+        ]
     },
     {
         "name": "Burst Aid",
@@ -184,7 +342,14 @@
         "perkType": "Augment",
         "id": 17,
         "maxPoints": 1,
-        "description": ["Rift created by Gamma Burst remains for the full duration of the skill. FL4K and allies near the rift rapidly regenerate health. Requires Gamma Burst."]
+        "description": ["Rift created by Gamma Burst remains for the full duration of the skill. FL4K and allies near the rift rapidly regenerate health. Requires Gamma Burst."],
+        "attributs": [
+            {
+                "name": "Health Regeneration",
+                "unit": "dot",
+                "values": [20]
+            }
+        ]
     },
     {
         "name": "Pack Tactics",
@@ -193,7 +358,19 @@
         "perkType": "Passive",
         "id": 18,
         "maxPoints": 3,
-        "description": ["FL4K and Pet gain increased maximum health and damage."]
+        "description": ["FL4K and Pet gain increased maximum health and damage."],
+        "attributs": [
+            {
+                "name": "FL4K & Pet Damage",
+                "unit": "percentage",
+                "values": [7, 14, 21]
+            },
+            {
+                "name": "FL4K & Per Maximum Health",
+                "unit": "percentage",
+                "values": [5, 10, 15]
+            }
+        ]
     },
     {
         "name": "Shared Spirit",
@@ -202,7 +379,14 @@
         "perkType": "Passive",
         "id": 19,
         "maxPoints": 1,
-        "description": ["When FL4K is at low health, a portion of damage they take is inflicted on pet instead."]
+        "description": ["When FL4K is at low health, a portion of damage they take is inflicted on pet instead."],
+        "attributs": [
+            {
+                "name": "Damage Shared",
+                "unit": "percentage",
+                "values": [50]
+            }
+        ]
     },
     {
         "name": "Dominance",
@@ -211,6 +395,18 @@
         "perkType": "Passive",
         "id": 20,
         "maxPoints": 1,
-        "description": ["Turns an enemy into an ally. Duration is doubled against a beast target. Target constantly loses health while dominated. Only one enemy can be dominated at a time, and each enemy can be dominated only once."]
+        "description": ["Turns an enemy into an ally. Duration is doubled against a beast target. Target constantly loses health while dominated. Only one enemy can be dominated at a time, and each enemy can be dominated only once."],
+        "attributs": [
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "values": [12]
+            },
+            {
+                "name": "Target loses Max Health",
+                "unit": "dot",
+                "values": [2]
+            }
+        ]
     }
 ]

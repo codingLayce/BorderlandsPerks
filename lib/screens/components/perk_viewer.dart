@@ -33,14 +33,9 @@ class PerkViewer extends StatelessWidget {
                 }
               },
               onLongPress: () {
-                showPopover(
+                showDialog(
                     context: context,
-                    transitionDuration: const Duration(milliseconds: 150),
-                    direction: PopoverDirection.top,
-                    width: 300,
-                    height: 300,
-                    bodyBuilder: (context) =>
-                        Popover(perk: perk, state: state));
+                    builder: (context) => Popover(perk: perk, state: state));
               },
               child: _perk(state)));
     });
@@ -94,75 +89,83 @@ class Popover extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(children: [
-          _name(context),
-          _spacing(),
+    return SimpleDialog(
+        titlePadding: const EdgeInsets.all(10),
+        contentPadding: const EdgeInsets.all(10),
+        title: _name(context),
+        children: [
           _type(context),
           _separator(),
           _description(context),
           _separator(),
           _currentAttributs(context),
-          _separator()
-        ]));
+          _separator(),
+          _nextAttributs(context)
+        ]);
+  }
+
+  _displayAttributs(BuildContext context, String title, bool next) {
+    List<Widget> widgets = [];
+
+    if (title != "") {
+      widgets.add(Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(title,
+                  style: const TextStyle(
+                      fontFamily: "Roboto",
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      color: app_colors.textColor)))));
+    }
+
+    for (var attrib in perk.attributs) {
+      widgets.add(Align(
+          alignment: Alignment.centerLeft,
+          child: RichText(
+              text: TextSpan(children: [
+            TextSpan(
+                text: attrib.name,
+                style: const TextStyle(
+                    fontFamily: "Roboto",
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    color: app_colors.textAttributColor)),
+            TextSpan(
+                text: ": ${_getValues(state, attrib, next)}",
+                style: Theme.of(context).textTheme.bodyText1)
+          ]))));
+    }
+
+    return Column(
+        mainAxisAlignment: MainAxisAlignment.start, children: widgets);
   }
 
   _currentAttributs(BuildContext context) {
-    int length = perk.attributs.length;
-    bool isPassive = perk.perkType == Fl4kPerkType.passive;
-
-    if (isPassive) {
-      ++length;
+    if (perk.perkType == Fl4kPerkType.passive) {
+      if (state.isSelected(perk.id)) {
+        return _displayAttributs(context, "Current Level Bonus", false);
+      }
+      return _displayAttributs(context, "Level Bonus", false);
     }
-
-    Widget widget = Column(
-        mainAxisAlignment:
-            isPassive ? MainAxisAlignment.start : MainAxisAlignment.center,
-        children: List.generate(length, (index) {
-          int accessor = index;
-          if (isPassive) {
-            --accessor;
-          }
-
-          if (isPassive && index == 0) {
-            return const Padding(
-                padding: EdgeInsets.only(bottom: 10),
-                child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Text("Current Level Bonus",
-                        style: TextStyle(
-                            fontFamily: "Roboto",
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: app_colors.textColor))));
-          }
-          return Align(
-              alignment: Alignment.centerLeft,
-              child: RichText(
-                  text: TextSpan(children: [
-                TextSpan(
-                    text: perk.attributs[accessor].name,
-                    style: const TextStyle(
-                        fontFamily: "Roboto",
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: app_colors.textAttributColor)),
-                TextSpan(
-                    text: ": ${_getValues(state, perk.attributs[accessor])}",
-                    style: Theme.of(context).textTheme.bodyText1)
-              ])));
-        }));
-
-    if (isPassive) {
-      return widget;
-    }
-
-    return Expanded(child: widget);
+    return _displayAttributs(context, "", false);
   }
 
-  String _getValues(PerksManager state, Attribut attrib) {
+  _nextAttributs(BuildContext context) {
+    if (perk.perkType == Fl4kPerkType.passive &&
+        state.isSelected(perk.id) &&
+        state.getAssignedPoints(perk) < perk.maxPoints) {
+      return _displayAttributs(context, "Next Level Bonus", true);
+    }
+    return Container();
+  }
+
+  String _getValues(PerksManager state, Attribut attrib, bool next) {
     if (state.isSelected(perk.id)) {
+      if (next) {
+        return _getNextAttribValue(state, attrib);
+      }
       return _getCurrentAttribValue(state, attrib);
     }
 
@@ -201,6 +204,11 @@ class Popover extends StatelessWidget {
     return "${attrib.values[level - 1]} ${attrib.unit.ext}";
   }
 
+  String _getNextAttribValue(PerksManager state, Attribut attrib) {
+    int level = state.getAssignedPoints(perk);
+    return "${attrib.values[level]} ${attrib.unit.ext}";
+  }
+
   _separator() {
     return const Divider();
   }
@@ -216,6 +224,7 @@ class Popover extends StatelessWidget {
             children: List.generate(
                 perk.description.length,
                 (index) => Text(perk.description[index],
+                    textAlign: TextAlign.justify,
                     style: Theme.of(context).textTheme.bodyText1))));
   }
 

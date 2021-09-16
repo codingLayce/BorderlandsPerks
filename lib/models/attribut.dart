@@ -1,4 +1,4 @@
-enum AttributUnitType { percentage, flat, seconds, unknown }
+enum AttributUnitType { percentage, flat, seconds, dot, stack, unknown }
 
 extension AttributUnitTypeTerminaison on AttributUnitType {
   String get ext {
@@ -7,6 +7,8 @@ extension AttributUnitTypeTerminaison on AttributUnitType {
         return "%";
       case AttributUnitType.seconds:
         return "s";
+      case AttributUnitType.dot:
+        return "per seconds";
       default:
         return "";
     }
@@ -21,6 +23,10 @@ AttributUnitType parseAttributUnitType(String value) {
       return AttributUnitType.flat;
     case "seconds":
       return AttributUnitType.seconds;
+    case "dot":
+      return AttributUnitType.dot;
+    case "stack":
+      return AttributUnitType.stack;
     default:
       return AttributUnitType.unknown;
   }
