@@ -4,7 +4,7 @@
         "treeLevel": 0,
         "image": "assets/B3/FL4K/Master/images/GammaBurst.png",
         "perkType": "ActionSkill",
-        "id": 0,
+        "id": "F_master_0",
         "maxPoints": 1,
         "description": ["Creates a rift at target location and teleports pet there. The rift deals radiation damage to nearby enemies. Pet becomes irradiated, dealing additional radiation damage when attacking. Can also revive pet, but this doubles follow up cooldown time."],
         "attributs": [
@@ -33,7 +33,7 @@
         "treeLevel": 0,
         "image": "assets/B3/FL4K/Master/images/GuardSkag.png",
         "perkType": "Pet",
-        "id": 1,
+        "id": "F_master_1",
         "maxPoints": 1,
         "description": ["Summons a pet skag. FL4K gains increased damage while accompanied by the skag.", "Attack Command: the skag vomits acid at enemies."]
     },
@@ -42,7 +42,7 @@
         "treeLevel": 1,
         "image": "assets/B3/FL4K/Master/images/Ferocity.png",
         "perkType": "Passive",
-        "id": 2,
+        "id": "F_master_2",
         "maxPoints": 5,
         "description": ["Increases pet damage."],
         "attributs": [
@@ -59,7 +59,7 @@
         "treeLevel": 1,
         "image": "assets/B3/FL4K/Master/images/PersistenceHunter.png",
         "perkType": "Passive",
-        "id": 3,
+        "id": "F_master_3",
         "maxPoints": 3,
         "description": ["Increases FL4K's gun damage and Action Skill duration."],
         "attributs": [
@@ -82,7 +82,7 @@
         "treeLevel": 1,
         "image": "assets/B3/FL4K/Master/images/GoForTheEyes.png",
         "perkType": "Passive",
-        "id": 4,
+        "id": "F_master_4",
         "maxPoints": 5,
         "description": ["Pet's first melee attack against an enemy is always a critical hit which gains bonus critical damage."],
         "attributs": [
@@ -99,7 +99,7 @@
         "treeLevel": 2,
         "image": "assets/B3/FL4K/Master/images/AtomicAroma.png",
         "perkType": "Augment",
-        "id": 5,
+        "id": "F_master_5",
         "maxPoints": 1,
         "description": ["Pet is surrounded by radiation aura that constantly damages nearby enemies. Requires Gamma Burst."],
         "attributs": [
@@ -116,7 +116,7 @@
         "treeLevel": 2,
         "image": "assets/B3/FL4K/Master/images/WhoRescuedWho.png",
         "perkType": "Passive",
-        "id": 6,
+        "id": "F_master_6",
         "maxPoints": 5,
         "description": ["FL4K briefly regenerates health when pet deals damage. Pet instantly gains some health when FL4K deals damage."],
         "attributs": [
@@ -139,7 +139,7 @@
         "treeLevel": 2,
         "image": "assets/B3/FL4K/Master/images/HeBites.png",
         "perkType": "Passive",
-        "id": 7,
+        "id": "F_master_7",
         "maxPoints": 3,
         "description": ["Pet can reflect a portion of damage it takes back at enemies."],
         "attributs": [
@@ -156,7 +156,7 @@
         "treeLevel": 2,
         "image": "assets/B3/FL4K/Master/images/Frenzy.png",
         "perkType": "Passive",
-        "id": 8,
+        "id": "F_master_8",
         "maxPoints": 5,
         "description": ["Hunter Skill. When pet deals damage, both FL4K and pet gain a stack of Frenzy, which increases damage."],
         "attributs": [
@@ -179,7 +179,7 @@
         "treeLevel": 3,
         "image": "assets/B3/FL4K/Master/images/EmpathicRage.png",
         "perkType": "Augment",
-        "id": 9,
+        "id": "F_master_9",
         "maxPoints": 1,
         "description": ["FL4K deals increased damage while Gamma Burst is active. Requires Gamma Burst."],
         "attributs": [
@@ -196,7 +196,7 @@
         "treeLevel": 3,
         "image": "assets/B3/FL4K/Master/images/PsychoHeadOnAStick.png",
         "perkType": "Passive",
-        "id": 10,
+        "id": "F_master_10",
         "maxPoints": 1,
         "description": ["Hunter Kill Skill. Pet gains increased movement speed and damage after FL4K kills an enemy."],
         "attributs": [
@@ -225,7 +225,7 @@
         "treeLevel": 3,
         "image": "assets/B3/FL4K/Master/images/HiveMind.png",
         "perkType": "Passive",
-        "id": 11,
+        "id": "F_master_11",
         "maxPoints": 3,
         "description": ["A portion of damage dealt to FL4K is inflicted on pet instead."],
         "attributs": [
@@ -242,7 +242,7 @@
         "treeLevel": 3,
         "image": "assets/B3/FL4K/Master/images/GreatHornedSkag.png",
         "perkType": "Pet",
-        "id": 12,
+        "id": "F_master_12",
         "maxPoints": 1,
         "description": ["Pet skag is upgraded to Horned skag. FL4K gains increased damage while accompanied by the horned skag.",
         "Attack Command: the skag charges at enemies and knocks them into the air."],
@@ -266,7 +266,7 @@
         "treeLevel": 4,
         "image": "assets/B3/FL4K/Master/images/Endurance.png",
         "perkType": "Augment",
-        "id": 13,
+        "id": "F_master_13",
         "maxPoints": 1,
         "description": ["Each kill made by FL4K or pet extends Gamma Burst's duration and increases pet damage."],
         "attributs": [
@@ -295,7 +295,7 @@
         "treeLevel": 4,
         "image": "assets/B3/FL4K/Master/images/BarbaricYawp.png",
         "perkType": "Passive",
-        "id": 14,
+        "id": "F_master_14",
         "maxPoints": 5,
         "description": ["Increases all pet bonuses for FL4K."],
         "attributs": [
@@ -312,7 +312,7 @@
         "treeLevel": 4,
         "image": "assets/B3/FL4K/Master/images/MutatedDefenses.png",
         "perkType": "Passive",
-        "id": 15,
+        "id": "F_master_15",
         "maxPoints": 1,
         "description": ["Pet gains damage reduction and is partially healed when health falls below a certain threshold."],
         "attributs": [
@@ -347,7 +347,7 @@
         "treeLevel": 4,
         "image": "assets/B3/FL4K/Master/images/EridianSkag.png",
         "perkType": "Pet",
-        "id": 16,
+        "id": "F_master_16",
         "maxPoints": 1,
         "description": ["Pet skag is upgraded to Eridian skag. FL4K gains increased damage and fire rate while accompanied by the Eridian skag.", "Attack Command: the skag generates a singularity, pulling nearby enemies in."],
         "attributs": [
@@ -370,7 +370,7 @@
         "treeLevel": 5,
         "image": "assets/B3/FL4K/Master/images/BurstAid.png",
         "perkType": "Augment",
-        "id": 17,
+        "id": "F_master_17",
         "maxPoints": 1,
         "description": ["Rift created by Gamma Burst remains for the full duration of the skill. FL4K and allies near the rift rapidly regenerate health. Requires Gamma Burst."],
         "attributs": [
@@ -387,7 +387,7 @@
         "treeLevel": 5,
         "image": "assets/B3/FL4K/Master/images/PackTactics.png",
         "perkType": "Passive",
-        "id": 18,
+        "id": "F_master_18",
         "maxPoints": 3,
         "description": ["FL4K and Pet gain increased maximum health and damage."],
         "attributs": [
@@ -410,7 +410,7 @@
         "treeLevel": 5,
         "image": "assets/B3/FL4K/Master/images/SharedSpirit.png",
         "perkType": "Passive",
-        "id": 19,
+        "id": "F_master_19",
         "maxPoints": 1,
         "description": ["When FL4K is at low health, a portion of damage they take is inflicted on pet instead."],
         "attributs": [
@@ -427,7 +427,7 @@
         "treeLevel": 6,
         "image": "assets/B3/FL4K/Master/images/Dominance.png",
         "perkType": "Passive",
-        "id": 20,
+        "id": "F_master_20",
         "maxPoints": 1,
         "description": ["Turns an enemy into an ally. Duration is doubled against a beast target. Target constantly loses health while dominated. Only one enemy can be dominated at a time, and each enemy can be dominated only once."],
         "attributs": [

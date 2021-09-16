@@ -11,7 +11,7 @@ const int maxSkillsPoint = 70;
 
 class PerksManager extends ChangeNotifier {
   int _skillsPoint = maxSkillsPoint;
-  final Map<int, int> _selectedPerks = <int, int>{};
+  final Map<String, int> _selectedPerks = <String, int>{};
   final List<Perks> _perks = [];
   String error = "";
   bool loading = false;
@@ -20,6 +20,7 @@ class PerksManager extends ChangeNotifier {
   Perks get perks => _perks[0];
   int get skillsPoint => _skillsPoint;
   int get _usedPoints => maxSkillsPoint - _skillsPoint;
+  int get maxSkillPoints => maxSkillsPoint;
 
   void load(List<String> paths) async {
     loading = true;
@@ -97,7 +98,7 @@ class PerksManager extends ChangeNotifier {
     return true;
   }
 
-  bool isSelected(int perkID) {
+  bool isSelected(String perkID) {
     return _selectedPerks.containsKey(perkID);
   }
 

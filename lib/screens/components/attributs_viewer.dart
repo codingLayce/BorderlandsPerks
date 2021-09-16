@@ -36,6 +36,7 @@ class _AttributsViewerState extends State<AttributsViewer> {
       for (var attrib in widget.attribs) {
         widgets.add(Flex(direction: Axis.horizontal, children: [
           Expanded(
+              flex: 2,
               child: Text(attrib.name,
                   textAlign: TextAlign.right,
                   style: const TextStyle(

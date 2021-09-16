@@ -48,7 +48,7 @@ class _CharacterViewer extends State<CharacterViewer> {
                 : GFFloatingWidget(
                     child: const GlobalPerks(),
                     body: PageView(controller: controller, children: views),
-                    verticalPosition: MediaQuery.of(context).size.height * 0.85,
+                    verticalPosition: MediaQuery.of(context).size.height * 0.80,
                     horizontalPosition: 10),
           );
         }));

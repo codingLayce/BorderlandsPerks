@@ -22,7 +22,7 @@ extension Fl4kPerkTypeString on Fl4kPerkType {
 const skillPointsPerLevel = 5;
 
 class Perk {
-  final int id;
+  final String id;
   final String name;
   final int treeLevel;
   final String image;
