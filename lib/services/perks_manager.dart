@@ -13,13 +13,12 @@ class PerksManager extends ChangeNotifier {
   int _skillsPoint = maxSkillsPoint;
   final Map<String, int> _selectedPerks = <String, int>{};
   final List<Perks> _perks = [];
-  String error = "";
   bool loading = false;
   bool perksRetrieved = false;
 
-  Perks get perks => _perks[0];
   int get skillsPoint => _skillsPoint;
   int get _usedPoints => maxSkillsPoint - _skillsPoint;
+  int get _usedPointsOnPassiveSkills => _calcUsedPointsOnPassiveSkills();
   int get maxSkillPoints => maxSkillsPoint;
 
   void load(List<String> paths) async {
@@ -48,7 +47,7 @@ class PerksManager extends ChangeNotifier {
   }
 
   bool isPerkLocked(Perk perk) {
-    return perk.isLocked(_usedPoints);
+    return perk.isLocked(_usedPointsOnPassiveSkills);
   }
 
   int getAssignedPoints(Perk perk) {
@@ -156,5 +155,21 @@ class PerksManager extends ChangeNotifier {
     }
 
     return toReturn;
+  }
+
+  int _calcUsedPointsOnPassiveSkills() {
+    int used = 0;
+
+    for (var perks in _perks) {
+      perks.perks
+          .where((perk) => _selectedPerks.containsKey(perk.id))
+          .forEach((perk) {
+        if (perk.perkType == Fl4kPerkType.passive) {
+          used += _selectedPerks[perk.id]!;
+        }
+      });
+    }
+
+    return used;
   }
 }
