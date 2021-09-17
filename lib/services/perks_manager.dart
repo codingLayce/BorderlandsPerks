@@ -69,15 +69,15 @@ class PerksManager extends ChangeNotifier {
 
   void assignSkillPoint(Perk perk, int tree) {
     if (perk.perkType == Fl4kPerkType.actionSkill && _isActionSkillSeleted()) {
-      throw BusinessException("An Action Skill is already selected");
+      throw const BusinessException("An Action Skill is already selected");
     } else if (perk.perkType == Fl4kPerkType.pet && _isPetSeleted()) {
-      throw BusinessException("A Pet is already selected");
+      throw const BusinessException("A Pet is already selected");
     } else if (perk.perkType == Fl4kPerkType.augment) {
       if (!_isRequiredActionSkillSelected(tree)) {
-        throw BusinessException(
+        throw const BusinessException(
             "Cannot select augment skill when the required action skill isn't selected");
       } else if (_isNumberOfAugmentMaximumReached(tree)) {
-        throw BusinessException(
+        throw const BusinessException(
             "Cannot select more than $maxAugmentSkills augment skills");
       }
     }
@@ -145,7 +145,7 @@ class SkillTree {
 
   void removeSkillPoint(Perk perk) {
     if (!_selectedPerks.containsKey(perk.id)) {
-      throw BusinessException("Cannot remove point of unselected perk");
+      throw const BusinessException("Cannot remove point of unselected perk");
     }
 
     _selectedPerks[perk.id] = _selectedPerks[perk.id]! - 1;
@@ -156,10 +156,10 @@ class SkillTree {
   }
 
   void assignSkillPoint(Perk perk, int skillPoints) {
-    if (skillPoints == 0) throw BusinessException("No more skill points");
+    if (skillPoints == 0) throw const BusinessException("No more skill points");
 
     if (perk.isLocked(usedPoints)) {
-      throw BusinessException("Not enough skill points used to unlock");
+      throw const BusinessException("Not enough skill points used to unlock");
     }
 
     if (_selectedPerks.containsKey(perk.id)) {
@@ -167,7 +167,7 @@ class SkillTree {
         _selectedPerks[perk.id] = _selectedPerks[perk.id]! + 1;
         usedPoints++;
       } else {
-        throw BusinessException("Perk has reached is maximum");
+        throw const BusinessException("Perk has reached is maximum");
       }
     } else {
       _selectedPerks[perk.id] = 1;

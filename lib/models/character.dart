@@ -1,4 +1,4 @@
-enum Character { fl4k, amara, moze, zane }
+enum Character { fl4k, amara, moze, zane, none }
 
 extension CharacterString on Character {
   String get name {
@@ -11,6 +11,8 @@ extension CharacterString on Character {
         return "MOZE";
       case Character.zane:
         return "ZANE";
+      case Character.none:
+        return "";
     }
   }
 }

@@ -11,8 +11,10 @@ import 'package:provider/provider.dart';
 
 class CharacterViewer extends StatefulWidget {
   final Character character;
+  final String name;
 
-  const CharacterViewer({required this.character, Key? key}) : super(key: key);
+  const CharacterViewer({required this.character, required this.name, Key? key})
+      : super(key: key);
 
   @override
   State createState() => _CharacterViewer();
@@ -31,18 +33,20 @@ class _CharacterViewer extends State<CharacterViewer> {
           }
 
           List<Widget> views = [];
-          views.add(const PerksResume(character: Character.fl4k));
+          views.add(PerksResume(character: widget.character));
           for (int i = 0; i < 4; i++) {
             Perks? perks = state.getPerks(i);
             if (perks != null) {
               views.add(PerksViewer(
-                  character: Character.fl4k, perks: perks, tree: i));
+                  character: widget.character, perks: perks, tree: i));
             }
           }
 
           return Scaffold(
             backgroundColor: app_colors.primaryBackgroundColor,
-            appBar: AppBar(title: const Text("Borderlands Perks")),
+            appBar: AppBar(
+                title: Text("Build ${widget.name}",
+                    style: Theme.of(context).textTheme.headline1)),
             body: state.loading
                 ? const CircularProgressIndicator()
                 : GFFloatingWidget(
