@@ -1,62 +1,76 @@
 import 'package:borderlands_perks/models/perk.dart';
 import 'package:borderlands_perks/screens/components/zoom_animation_wrapper.dart';
 import 'package:borderlands_perks/screens/components/error.dart';
+import 'package:borderlands_perks/services/business_exception.dart';
 import 'package:borderlands_perks/services/perks_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:popover/popover.dart';
 import 'package:provider/provider.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
 import 'package:borderlands_perks/models/attribut.dart';
 
-class PerkViewer extends StatelessWidget {
+class PerkViewer extends StatefulWidget {
   final Perk perk;
+  final int tree;
 
-  const PerkViewer({required this.perk, Key? key}) : super(key: key);
+  const PerkViewer({required this.perk, required this.tree, Key? key})
+      : super(key: key);
 
+  @override
+  State<PerkViewer> createState() => _PerkViewerState();
+}
+
+class _PerkViewerState extends State<PerkViewer> {
   @override
   Widget build(BuildContext context) {
     return Consumer<PerksManager>(builder: (context, state, child) {
       return Expanded(
           child: ZoomAnimationWrapper(
               onTap: () {
-                String error = state.assignSkillPoint(perk);
-                if (error != "") {
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(Error.getSnackBar(context, error));
+                try {
+                  state.assignSkillPoint(widget.perk, widget.tree);
+                } on BusinessException catch (exception) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      Error.getSnackBar(context, exception.error));
                 }
               },
               onDoubleTap: () {
-                if (!state.removeSkillPoint(perk)) {
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                      content: Error(
-                          error: "Cannot remove skill point on that perk")));
+                try {
+                  state.removeSkillPoint(widget.perk, widget.tree);
+                } on BusinessException catch (exception) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      Error.getSnackBar(context, exception.error));
                 }
               },
               onLongPress: () {
                 showDialog(
                     context: context,
-                    builder: (context) => Popover(perk: perk, state: state));
+                    builder: (context) => Popover(
+                        perk: widget.perk, state: state, tree: widget.tree));
               },
               child: _perk(state)));
     });
   }
 
   _perk(PerksManager state) {
+    int assignedPoints = state.getAssignedPoints(widget.perk.id, widget.tree);
+
     return Column(children: [
-      state.isSelected(perk.id) ? _selectedPerk() : _notSelectedPerk(state),
+      state.isSelected(widget.perk.id, widget.tree)
+          ? _selectedPerk()
+          : _notSelectedPerk(state),
       const SizedBox(height: 5),
       RichText(
           text: TextSpan(children: [
         TextSpan(
-            text: "${state.getAssignedPoints(perk)} ",
+            text: "$assignedPoints ",
             style: TextStyle(
                 fontWeight: FontWeight.w700,
-                color: state.getAssignedPoints(perk) == 0
+                color: assignedPoints == 0
                     ? Colors.red
-                    : state.getAssignedPoints(perk) == perk.maxPoints
+                    : assignedPoints == widget.perk.maxPoints
                         ? Colors.green
                         : Colors.white)),
-        TextSpan(text: "/ ${perk.maxPoints}")
+        TextSpan(text: "/ ${widget.perk.maxPoints}")
       ]))
     ]);
   }
@@ -65,26 +79,28 @@ class PerkViewer extends StatelessWidget {
     return ColorFiltered(
         colorFilter:
             const ColorFilter.mode(Colors.lightGreenAccent, BlendMode.modulate),
-        child: Image.asset(perk.image));
+        child: Image.asset(widget.perk.image));
   }
 
   _notSelectedPerk(PerksManager state) {
-    if (state.isPerkLocked(perk)) {
+    if (state.isPerkLocked(widget.perk, widget.tree)) {
       return ColorFiltered(
           colorFilter: const ColorFilter.mode(
               Color.fromRGBO(100, 100, 100, 0.6), BlendMode.modulate),
-          child: Image.asset(perk.image));
+          child: Image.asset(widget.perk.image));
     }
 
-    return Image.asset(perk.image);
+    return Image.asset(widget.perk.image);
   }
 }
 
 class Popover extends StatelessWidget {
   final Perk perk;
   final PerksManager state;
+  final int tree;
 
-  const Popover({required this.perk, required this.state, Key? key})
+  const Popover(
+      {required this.perk, required this.state, required this.tree, Key? key})
       : super(key: key);
 
   @override
@@ -144,7 +160,7 @@ class Popover extends StatelessWidget {
 
   _currentAttributs(BuildContext context) {
     if (perk.perkType == Fl4kPerkType.passive) {
-      if (state.isSelected(perk.id)) {
+      if (state.isSelected(perk.id, tree)) {
         return _displayAttributs(context, "Current Level Bonus", false);
       }
       return _displayAttributs(context, "Level Bonus", false);
@@ -154,8 +170,8 @@ class Popover extends StatelessWidget {
 
   _nextAttributs(BuildContext context) {
     if (perk.perkType == Fl4kPerkType.passive &&
-        state.isSelected(perk.id) &&
-        state.getAssignedPoints(perk) < perk.maxPoints) {
+        state.isSelected(perk.id, tree) &&
+        state.getAssignedPoints(perk.id, tree) < perk.maxPoints) {
       return _displayAttributs(context, "Next Level Bonus", true);
     }
     return Container();
@@ -166,7 +182,7 @@ class Popover extends StatelessWidget {
       return _getFirstAttribValue(attrib);
     }
 
-    if (state.isSelected(perk.id)) {
+    if (state.isSelected(perk.id, tree)) {
       if (next) {
         return _getNextAttribValue(state, attrib);
       }
@@ -202,14 +218,14 @@ class Popover extends StatelessWidget {
   }
 
   String _getCurrentAttribValue(PerksManager state, Attribut attrib) {
-    int level = state.getAssignedPoints(perk);
+    int level = state.getAssignedPoints(perk.id, tree);
     String val = "${attrib.values[level - 1]} ${attrib.unit.ext}";
     return _checkAndFormatPositivePercentage(
         val, attrib.unit, attrib.values[level - 1]);
   }
 
   String _getNextAttribValue(PerksManager state, Attribut attrib) {
-    int level = state.getAssignedPoints(perk);
+    int level = state.getAssignedPoints(perk.id, tree);
     String val = "${attrib.values[level]} ${attrib.unit.ext}";
     return _checkAndFormatPositivePercentage(
         val, attrib.unit, attrib.values[level]);

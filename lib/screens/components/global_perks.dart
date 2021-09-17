@@ -18,12 +18,12 @@ class GlobalPerks extends StatelessWidget {
           child: RichText(
               text: TextSpan(children: [
             TextSpan(
-                text: "${state.skillsPoint}",
+                text: "${state.skillPoints}",
                 style: TextStyle(
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
-                    color: state.skillsPoint == 0
+                    color: state.skillPoints == 0
                         ? Colors.red
                         : app_colors.textAttributColor)),
             TextSpan(

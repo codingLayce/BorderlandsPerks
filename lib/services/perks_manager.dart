@@ -4,22 +4,31 @@ import 'package:borderlands_perks/models/active_attribut.dart';
 import 'package:borderlands_perks/models/attribut.dart';
 import 'package:borderlands_perks/models/perk.dart';
 import 'package:borderlands_perks/models/perks.dart';
+import 'package:borderlands_perks/services/business_exception.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 const int maxSkillsPoint = 70;
+const int maxAugmentSkills = 3;
 
 class PerksManager extends ChangeNotifier {
-  int _skillsPoint = maxSkillsPoint;
-  final Map<String, int> _selectedPerks = <String, int>{};
-  final List<Perks> _perks = [];
+  List<SkillTree> trees = [];
   bool loading = false;
   bool perksRetrieved = false;
 
-  int get skillsPoint => _skillsPoint;
-  int get _usedPoints => maxSkillsPoint - _skillsPoint;
-  int get _usedPointsOnPassiveSkills => _calcUsedPointsOnPassiveSkills();
+  int get skillPoints {
+    int points = maxSkillPoints;
+
+    for (var tree in trees) {
+      points -= tree.usedPoints;
+    }
+
+    return points;
+  }
+
   int get maxSkillPoints => maxSkillsPoint;
+
+  /* ---------- PUBLIC ---------- */
 
   void load(List<String> paths) async {
     loading = true;
@@ -32,7 +41,7 @@ class PerksManager extends ChangeNotifier {
 
       perks.sort((a, b) => a.compareTo(b));
 
-      _perks.add(Perks(perks: perks));
+      trees.add(SkillTree(perks: Perks(perks: perks)));
     }
 
     perksRetrieved = true;
@@ -41,64 +50,144 @@ class PerksManager extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool isPerkLocked(Perk perk, int tree) {
+    return trees[tree].isPerkLocked(perk);
+  }
+
+  int getAssignedPoints(String perkID, int tree) {
+    return trees[tree].getAssignedPoints(perkID);
+  }
+
+  bool isSelected(String perkID, int tree) {
+    return trees[tree].isSelected(perkID);
+  }
+
   Perks? getPerks(int index) {
-    if (index >= _perks.length) return null;
-    return _perks.elementAt(index);
+    if (index >= trees.length) return null;
+    return trees.elementAt(index).perks;
   }
 
-  bool isPerkLocked(Perk perk) {
-    return perk.isLocked(_usedPointsOnPassiveSkills);
-  }
-
-  int getAssignedPoints(Perk perk) {
-    if (_selectedPerks.containsKey(perk.id)) {
-      return _selectedPerks[perk.id]!;
-    }
-    return 0;
-  }
-
-  String assignSkillPoint(Perk perk) {
-    if (_skillsPoint == 0) return "No more skill points";
-
-    if (perk.isLocked(_usedPoints)) {
-      return "Not enough skill points used to unlock";
-    }
-
-    if (_selectedPerks.containsKey(perk.id)) {
-      if (perk.canAddSkillPoint(_selectedPerks[perk.id]!)) {
-        _selectedPerks[perk.id] = _selectedPerks[perk.id]! + 1;
-        --_skillsPoint;
-      } else {
-        return "Perk has reached is maximum";
+  void assignSkillPoint(Perk perk, int tree) {
+    if (perk.perkType == Fl4kPerkType.actionSkill && _isActionSkillSeleted()) {
+      throw BusinessException("An Action Skill is already selected");
+    } else if (perk.perkType == Fl4kPerkType.pet && _isPetSeleted()) {
+      throw BusinessException("A Pet is already selected");
+    } else if (perk.perkType == Fl4kPerkType.augment) {
+      if (!_isRequiredActionSkillSelected(tree)) {
+        throw BusinessException(
+            "Cannot select augment skill when the required action skill isn't selected");
+      } else if (_isNumberOfAugmentMaximumReached(tree)) {
+        throw BusinessException(
+            "Cannot select more than $maxAugmentSkills augment skills");
       }
-    } else {
-      _selectedPerks[perk.id] = 1;
-      --_skillsPoint;
     }
 
+    trees[tree].assignSkillPoint(perk, skillPoints);
     notifyListeners();
-
-    return "";
   }
 
-  bool removeSkillPoint(Perk perk) {
+  void removeSkillPoint(Perk perk, int tree) {
+    trees[tree].removeSkillPoint(perk);
+    notifyListeners();
+  }
+
+  List<ActiveAttribut> getActiveAttributs() {
+    List<ActiveAttribut> attribs = [];
+
+    for (var tree in trees) {
+      attribs.addAll(tree.getActiveAttributs());
+    }
+
+    return attribs;
+  }
+
+  /* ---------- PRIVATE ---------- */
+  bool _isActionSkillSeleted() {
+    for (var tree in trees) {
+      if (tree.isActionSkillSelected()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  bool _isPetSeleted() {
+    for (var tree in trees) {
+      if (tree.isPetSelected()) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  bool _isRequiredActionSkillSelected(int tree) {
+    return trees[tree].isActionSkillSelected();
+  }
+
+  bool _isNumberOfAugmentMaximumReached(int tree) {
+    return trees[tree].countAugmentSkills() >= maxAugmentSkills;
+  }
+}
+
+class SkillTree {
+  final Perks perks;
+  final Map<String, int> _selectedPerks = <String, int>{};
+
+  int usedPoints = 0;
+
+  SkillTree({required this.perks});
+
+  int get _usedPointsOnPassiveSkills => _calcUsedPointsOnPassiveSkills();
+
+  /* ---------- PUBLIC ---------- */
+
+  void removeSkillPoint(Perk perk) {
     if (!_selectedPerks.containsKey(perk.id)) {
-      return false;
+      throw BusinessException("Cannot remove point of unselected perk");
     }
 
     _selectedPerks[perk.id] = _selectedPerks[perk.id]! - 1;
     if (_selectedPerks[perk.id] == 0) {
       _selectedPerks.remove(perk.id);
     }
-    ++_skillsPoint;
+    usedPoints--;
+  }
 
-    notifyListeners();
+  void assignSkillPoint(Perk perk, int skillPoints) {
+    if (skillPoints == 0) throw BusinessException("No more skill points");
 
-    return true;
+    if (perk.isLocked(usedPoints)) {
+      throw BusinessException("Not enough skill points used to unlock");
+    }
+
+    if (_selectedPerks.containsKey(perk.id)) {
+      if (perk.canAddSkillPoint(_selectedPerks[perk.id]!)) {
+        _selectedPerks[perk.id] = _selectedPerks[perk.id]! + 1;
+        usedPoints++;
+      } else {
+        throw BusinessException("Perk has reached is maximum");
+      }
+    } else {
+      _selectedPerks[perk.id] = 1;
+      usedPoints++;
+    }
   }
 
   bool isSelected(String perkID) {
     return _selectedPerks.containsKey(perkID);
+  }
+
+  int getAssignedPoints(String perkID) {
+    if (_selectedPerks.containsKey(perkID)) {
+      return _selectedPerks[perkID]!;
+    }
+    return 0;
+  }
+
+  bool isPerkLocked(Perk perk) {
+    return perk.isLocked(_usedPointsOnPassiveSkills);
   }
 
   List<ActiveAttribut> getActiveAttributs() {
@@ -139,6 +228,39 @@ class PerksManager extends ChangeNotifier {
     return toReturn;
   }
 
+  bool isActionSkillSelected() {
+    for (var perk in _getSelectedPerks()) {
+      if (perk.perkType == Fl4kPerkType.actionSkill) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  bool isPetSelected() {
+    for (var perk in _getSelectedPerks()) {
+      if (perk.perkType == Fl4kPerkType.pet) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  int countAugmentSkills() {
+    int count = 0;
+
+    for (var perk in _getSelectedPerks()) {
+      if (perk.perkType == Fl4kPerkType.augment) {
+        count++;
+      }
+    }
+
+    return count;
+  }
+
+  /* ---------- PRIVATES ---------- */
   num _getAttribCurrentValue(int level, Attribut attrib) {
     if (attrib.values.length == 1) {
       return attrib.values[0];
@@ -147,28 +269,21 @@ class PerksManager extends ChangeNotifier {
   }
 
   List<Perk> _getSelectedPerks() {
-    List<Perk> toReturn = [];
-
-    for (var perks in _perks) {
-      toReturn.addAll(
-          perks.perks.where((perk) => _selectedPerks.containsKey(perk.id)));
-    }
-
-    return toReturn;
+    return perks.perks
+        .where((perk) => _selectedPerks.containsKey(perk.id))
+        .toList();
   }
 
   int _calcUsedPointsOnPassiveSkills() {
     int used = 0;
 
-    for (var perks in _perks) {
-      perks.perks
-          .where((perk) => _selectedPerks.containsKey(perk.id))
-          .forEach((perk) {
-        if (perk.perkType == Fl4kPerkType.passive) {
-          used += _selectedPerks[perk.id]!;
-        }
-      });
-    }
+    perks.perks
+        .where((perk) => _selectedPerks.containsKey(perk.id))
+        .forEach((perk) {
+      if (perk.perkType == Fl4kPerkType.passive) {
+        used += _selectedPerks[perk.id]!;
+      }
+    });
 
     return used;
   }

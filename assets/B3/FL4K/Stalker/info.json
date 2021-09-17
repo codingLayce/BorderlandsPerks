@@ -1,0 +1,106 @@
+[
+    {
+        "name": "Fade Away",
+        "treeLevel": 0,
+        "image": "assets/B3/FL4K/Stalker/images/FadeAway.png",
+        "perkType": "ActionSkill",
+        "id": "F_Stalker_0",
+        "maxPoints": 1,
+        "description": ["Renders FL4K invisible to enemies. FL4K can shoot up to three shots while invisible, and each shot is an automatic critical hit. Grants increased movement speed and health regeneration."],
+        "attributs": [
+            {
+                "name": "Critical Hit Damage",
+                "unit": "percentage",
+                "activation": "skill",
+                "values": [200]
+            },
+            {
+                "name": "Movement Speed",
+                "unit": "percentage",
+                "activation": "skill",
+                "values": [25]
+            },
+            {
+                "name": "Health Regeneration",
+                "unit": "percentageDot",
+                "activation": "skill",
+                "values": [3]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "activation": "skill",
+                "values": [15]
+            },
+            {
+                "name": "Cooldown",
+                "unit": "seconds",
+                "activation": "skill",
+                "values": [45]
+            }
+        ]
+    },
+    {
+        "name": "Jabber Sidekick",
+        "treeLevel": 0,
+        "image": "assets/B3/FL4K/Stalker/images/JabberSidekick.png",
+        "perkType": "Pet",
+        "id": "F_Stalker_1",
+        "maxPoints": 1,
+        "description": ["Summons a pet jabber. FL4K gains increased movement speed while accompanied by the jabber.", "Attack Command: the jabber throws a radiation barrel at enemies."],
+        "attributs": [
+            {
+                "name": "Movement Speed",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [5]
+            }
+        ]
+    },
+    {
+        "name": "Self-Repairing System",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Stalker/images/SelfRepairingSystem.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_2",
+        "maxPoints": 5,
+        "description": ["FL4K gains increased maximum health and constant health regeneration."],
+        "attributs": [
+            {
+                "name": "Maximum Health",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [6, 12, 18, 24, 30]
+            },
+            {
+                "name": "Health Regeneration",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [0.3, 0.6, 0.9, 1.2, 1.5]
+            }
+        ]
+    },
+    {
+        "name": "Sic 'Em",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Stalker/images/SicEm.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_3",
+        "maxPoints": 3,
+        "description": ["Reduces Attack Command cooldown and increases the attack's damage."],
+        "attributs": [
+            {
+                "name": "Attack Command Damage",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [10, 20, 30]
+            },
+            {
+                "name": "Attack Command Cooldown",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [-10, -20, -30]
+            }
+        ]
+    }
+]

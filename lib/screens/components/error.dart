@@ -6,13 +6,7 @@ class Error extends StatelessWidget {
   const Error({required this.error, Key? key}) : super(key: key);
 
   static SnackBar getSnackBar(BuildContext context, String error) {
-    return SnackBar(
-        action: SnackBarAction(
-            label: "Close",
-            onPressed: () {
-              ScaffoldMessenger.of(context).hideCurrentSnackBar();
-            }),
-        content: Error(error: error));
+    return SnackBar(content: Error(error: error));
   }
 
   @override

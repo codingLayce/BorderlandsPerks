@@ -16,11 +16,13 @@ class PerksResume extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<PerksManager>(builder: (context, state, child) {
       return Container(
+          padding: const EdgeInsets.all(10),
           decoration:
               const BoxDecoration(color: app_colors.primaryBackgroundColor),
           child: Align(
-              alignment: Alignment.center,
-              child: _buildResume(context, state)));
+              alignment: Alignment.topCenter,
+              child:
+                  SingleChildScrollView(child: _buildResume(context, state))));
     });
   }
 

@@ -39,8 +39,10 @@ class _PerksViewer extends State<PerksViewer> {
       content[treeLevel] = SizedBox(
           height: 100,
           child: Row(
-              children: List.generate(levelPerks.length,
-                  (index) => PerkViewer(perk: levelPerks[index]))));
+              children: List.generate(
+                  levelPerks.length,
+                  (index) =>
+                      PerkViewer(perk: levelPerks[index], tree: widget.tree))));
     });
 
     return SingleChildScrollView(

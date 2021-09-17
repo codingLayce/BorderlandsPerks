@@ -64,6 +64,8 @@ flutter:
   assets:
     - assets/B3/FL4K/Master/images/
     - assets/B3/FL4K/Master/info.json
+    - assets/B3/FL4K/Stalker/images/
+    - assets/B3/FL4K/Stalker/info.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

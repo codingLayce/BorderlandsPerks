@@ -36,7 +36,7 @@ class _CharacterViewer extends State<CharacterViewer> {
             Perks? perks = state.getPerks(i);
             if (perks != null) {
               views.add(PerksViewer(
-                  character: Character.fl4k, perks: perks, tree: 0));
+                  character: Character.fl4k, perks: perks, tree: i));
             }
           }
 
