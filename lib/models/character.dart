@@ -26,6 +26,10 @@ extension CharacterLoader on Character {
         return [];
     }
 
-    return ["$path/Master/info.json", "$path/Stalker/info.json"];
+    return [
+      "$path/Master/info.json",
+      "$path/Stalker/info.json",
+      "$path/Hunter/info.json"
+    ];
   }
 }

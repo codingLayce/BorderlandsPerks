@@ -102,5 +102,392 @@
                 "values": [-10, -20, -30]
             }
         ]
+    },
+    {
+        "name": "Furious Attack",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Stalker/images/FuriousAttack.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_4",
+        "maxPoints": 5,
+        "description": ["Hunter Skill. FL4K gains Furious Attack stacks when shooting enemies. Each stack increases handling, gun damage and Pet damage."],
+        "attributs": [
+            {
+                "name": "Handling",
+                "unit": "percentageStack",
+                "activation": "shootingEnemy",
+                "values": [1, 2, 2.9, 3.8, 4.8]
+            },
+            {
+                "name": "Gun Damage",
+                "unit": "percentageStack",
+                "activation": "shootingEnemy",
+                "values": [0.4, 0.8, 1.2, 1.6, 2.0]
+            },
+            {
+                "name": "Pet Damage",
+                "unit": "percentage",
+                "activation": "shootingEnemy",
+                "values": [1, 1, 2, 2, 3]
+            },
+            {
+                "name": "Furious Attack Stacks",
+                "unit": "stack",
+                "activation": "shootingEnemy",
+                "values": [10]
+            },
+            {
+                "name": "Furious Attack Duration",
+                "unit": "seconds",
+                "activation": "shootingEnemy",
+                "values": [4]
+            }
+        ]
+    },
+    {
+        "name": "Guerrillas In The Mist",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Stalker/images/GuerrillasInTheMist.png",
+        "perkType": "Augment",
+        "id": "F_Stalker_5",
+        "maxPoints": 1,
+        "description": ["Fade Away no longer ends when FL4K attacks, but duration and bonus critical damage are reduced. Requires Fade Away."],
+        "attributs": [
+            {
+                "name": "Fade Away Duration",
+                "unit": "seconds",
+                "activation": "skill",
+                "values": [5]
+            },
+            {
+                "name": "Critical Hit Damage",
+                "unit": "percentage",
+                "activation": "skill",
+                "values": [25]
+            }
+        ]
+    },
+    {
+        "name": "Eager To Impress",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Stalker/images/EagerToImpress.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_6",
+        "maxPoints": 5,
+        "description": ["Kill Skill. Action Skill cooldown is reduced when FL4K kills an enemy. If the pet kills an enemy, cooldown is reduced by a greater amount, and Attack Command cooldown is reset."],
+        "attributs": [
+            {
+                "name": "Pet Kill",
+                "unit": "seconds",
+                "activation": "enemyKill",
+                "values": [-0.5, -1, -1.5, -2, -2.5]
+            },
+            {
+                "name": "FL4K Kill",
+                "unit": "seconds",
+                "activation": "enemyKill",
+                "values": [-0.25, -0.5, -0.75, -1, -1.25]
+            }
+        ]
+    },
+    {
+        "name": "All My BFF's",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Stalker/images/AllMyBFFs.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_7",
+        "maxPoints": 3,
+        "description": ["FL4K's allies gain a portion of FL4K's total health regeneration. FL4K's pet receives twice the amount."],
+        "attributs": [
+            {
+                "name": "Allies Share",
+                "unit": "pecentage",
+                "activation": "always",
+                "values": [17, 33, 50]
+            }
+        ]
+    },
+    {
+        "name": "Overclocked",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Stalker/images/Overclocked.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_8",
+        "maxPoints": 5,
+        "description": ["Increases FL4K's fire rate. Reloading weapon increases fire rate further for a few seconds."],
+        "attributs": [
+            {
+                "name": "Fire Rate",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [2, 4, 6, 8, 10]
+            },
+            {
+                "name": "Fire Rate After Reloading",
+                "unit": "percentage",
+                "activation": "reloading",
+                "values": [2, 4, 6, 8, 10]
+            },
+            {
+                "name": "Duration After Reloading",
+                "unit": "seconds",
+                "activation": "reloading",
+                "values": [4]
+            }
+        ]
+    },
+    {
+        "name": "Not My Circus",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Stalker/images/NotMyCircus.png",
+        "perkType": "Augment",
+        "id": "F_Stalker_9",
+        "maxPoints": 1,
+        "description": ["FL4K's pet taunts nearby enemies and gains damage reduction for a few seconds after Fade Away ends. Requires Fade Away."],
+        "attributs": [
+            {
+                "name": "Pet Taunt Duration",
+                "unit": "seconds",
+                "activation": "skillEnd",
+                "values": [6]
+            },
+            {
+                "name": "Pet Damage Reduction",
+                "unit": "percentage",
+                "activation": "skillEnd",
+                "values": [80]
+            }
+        ]
+    },
+    {
+        "name": "Lick The Wounds",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Stalker/images/LickTheWounds.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_10",
+        "maxPoints": 1,
+        "description": ["FL4K's pet will attempt to revive FL4K when they are crippled. After being revived by pet, pet gains increased damage for a time."],
+        "attributs": [
+            {
+                "name": "Pet Damage",
+                "unit": "percentage",
+                "activation": "petReviveFl4k",
+                "values": [30]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "activation": "petReviveFl4k",
+                "values": [60]
+            }
+        ]
+    },
+    {
+        "name": "Turn Tail And Run",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Stalker/images/TurnTailAndRun.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_11",
+        "maxPoints": 3,
+        "description": ["FL4K gains health regeneration and damage reduction while moving. They gain gun damage and fire rate while not moving."],
+        "attributs": [
+            {
+                "name": "Damage Reduction",
+                "unit": "percentage",
+                "activation": "moving",
+                "values": [6.5, 12.3, 17.4]
+            },
+            {
+                "name": "Health Regeneration",
+                "unit": "percentage",
+                "activation": "moving",
+                "values": [0.3, 0.6, 0.9]
+            },
+            {
+                "name": "Gun Damage",
+                "unit": "percentage",
+                "activation": "still",
+                "values": [8.3, 16.7, 25]
+            },
+            {
+                "name": "Fire Rate",
+                "unit": "percentage",
+                "activation": "still",
+                "values": [4, 8, 12]
+            }
+        ]
+    },
+    {
+        "name": "Beefcake Jabber",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Stalker/images/BeefcakeJabber.png",
+        "perkType": "Pet",
+        "id": "F_Stalker_12",
+        "maxPoints": 1,
+        "description": ["Pet jabber is upgraded to Beefcake jabber, armed with a shotgun. FL4K gains increased movement speed and maximum health while accompanied by the Beefcake.", "Attack Command: the Beefcake performs a melee attack that knocks enemies back."],
+        "attributs": [
+            {
+                "name": "Movement Speed",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [5]
+            },
+            {
+                "name": "Maximum Health",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [10]
+            }
+        ]
+    },
+    {
+        "name": "Until You Are Dead",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Stalker/images/UntilYouAreDead.png",
+        "perkType": "Augment",
+        "id": "F_Stalker_13",
+        "maxPoints": 1,
+        "description": ["Fade Away's health regeneration and movement speed bonuses persist for a few seconds after Fade Away ends. Requires Fade Away."],
+        "attributs": [
+            {
+                "name": "Extra Duration",
+                "unit": "seconds",
+                "activation": "skillEnd",
+                "values": [10]
+            }
+        ]
+    },
+    {
+        "name": "The Fast And The Furryous",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Stalker/images/TheFastAndTheFurryous.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_14",
+        "maxPoints": 3,
+        "description": ["While above half Health, FL4K gains increased Gun Damage and Movement Speed, and their pet gains increased damage."],
+        "attributs": [
+            {
+                "name": "Gun Damage",
+                "unit": "percentage",
+                "activation": "aboveHalfHealth",
+                "values": [8, 17, 25]
+            },
+            {
+                "name": "Movement Speed",
+                "unit": "percentage",
+                "activation": "aboveHalfHealth",
+                "values": [3.3, 6.7, 10]
+            },
+            {
+                "name": "Pet Damage",
+                "unit": "percentage",
+                "activation": "aboveHalfHealth",
+                "values": [10, 20, 30]
+            }
+        ]
+    },
+    {
+        "name": "Hidden Machine",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Stalker/images/HiddenMachine.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_15",
+        "maxPoints": 5,
+        "description": ["FL4K deals increased damage against targets who are not targeting FL4K."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "percentage",
+                "activation": "dealDamageOnNotTargetingTarget",
+                "values": [6, 12, 18, 24, 30]
+            }
+        ]
+    },
+    {
+        "name": "Gunslinger Jabber",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Stalker/images/GunslingerJabber.png",
+        "perkType": "Pet",
+        "id": "F_Stalker_16",
+        "maxPoints": 1,
+        "description": ["Pet jabber is upgraded to Gunslinger jabber, armed with an SMG. FL4K gains increased movement speed and critical hit damage while accompanied by the Gunslinger.",
+                        "Attack Command: the Gunslinger equips a rocket launcher to attack the target."],
+        "attributs": [
+            {
+                "name": "Movement Speed",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [5]
+            },
+            {
+                "name": "Critical Hit Damage",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [5]
+            }
+        ]
+    },
+    {
+        "name": "Unblinking Eye",
+        "treeLevel": 5,
+        "image": "assets/B3/FL4K/Stalker/images/UnblinkingEye.png",
+        "perkType": "Augment",
+        "id": "F_Stalker_17",
+        "maxPoints": 1,
+        "description": ["FL4K's successive hits on the same target receive increasing critical damage bonus. Bonus is reset every three hits. Requires Fade Away."],
+        "attributs": [
+            {
+                "name": "Critical Hit Damage",
+                "unit": "percentagePerHit",
+                "activation": "skill",
+                "values": [75]
+            }
+        ]
+    },
+    {
+        "name": "Rage And Recover",
+        "treeLevel": 5,
+        "image": "assets/B3/FL4K/Stalker/images/RageAndRecover.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_18",
+        "maxPoints": 5,
+        "description": ["Kill Skill. FL4K and pet regenerate a portion of missing health after killing an enemy."],
+        "attributs": [
+            {
+                "name": "Health Regeneration",
+                "unit": "percentageOfMissingHealth",
+                "activation": "enemyKill",
+                "values": [1.6, 3.2, 4.8, 6.4, 8]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "activation": "enemyKill",
+                "values": [3]
+            }
+        ]
+    },
+    {
+        "name": "The Power Inside",
+        "treeLevel": 6,
+        "image": "assets/B3/FL4K/Stalker/images/ThePowerInside.png",
+        "perkType": "Passive",
+        "id": "F_Stalker_19",
+        "maxPoints": 1,
+        "description": ["Activating Action Skill gives FL4K and pet damage bonus for a short time. Bonus is doubled if FL4K is at full health."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "percentage",
+                "activation": "skill",
+                "values": [25]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "activation": "skill",
+                "values": [15]
+            }
+        ]
     }
 ]

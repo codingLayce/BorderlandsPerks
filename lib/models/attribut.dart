@@ -4,7 +4,11 @@ enum AttributUnitType {
   seconds,
   dot,
   percentageDot,
+  percentageStack,
   stack,
+  percentagePerHit,
+  percentageOfMissingHealth,
+  precentageOfMaxHealth,
   unknown
 }
 
@@ -19,6 +23,14 @@ extension AttributUnitTypeTerminaison on AttributUnitType {
         return "per seconds";
       case AttributUnitType.percentageDot:
         return "% per seconds";
+      case AttributUnitType.percentageStack:
+        return "% per stack";
+      case AttributUnitType.percentagePerHit:
+        return "% per hit";
+      case AttributUnitType.percentageOfMissingHealth:
+        return "% of missing health";
+      case AttributUnitType.precentageOfMaxHealth:
+        return "% of max health";
       default:
         return "";
     }
@@ -39,6 +51,14 @@ AttributUnitType parseAttributUnitType(String value) {
       return AttributUnitType.stack;
     case "percentageDot":
       return AttributUnitType.percentageDot;
+    case "percentageStack":
+      return AttributUnitType.percentageStack;
+    case "percentagePerHit":
+      return AttributUnitType.percentagePerHit;
+    case "percentageOfMissingHealth":
+      return AttributUnitType.percentageOfMissingHealth;
+    case "precentageOfMaxHealth":
+      return AttributUnitType.precentageOfMaxHealth;
     default:
       return AttributUnitType.unknown;
   }
@@ -50,8 +70,16 @@ enum AttributActivation {
   firstPetAttack,
   petDealsDamage,
   enemyKill,
+  shootingEnemy,
   petHealthAtValue,
   healthLow,
+  reloading,
+  skillEnd,
+  petReviveFl4k,
+  moving,
+  still,
+  aboveHalfHealth,
+  dealDamageOnNotTargetingTarget,
   unknown
 }
 
@@ -61,7 +89,7 @@ extension AttributActivationString on AttributActivation {
       case AttributActivation.skill:
         return "When Skill In Use";
       case AttributActivation.always:
-        return "Always ";
+        return "Always";
       case AttributActivation.firstPetAttack:
         return "On First Pet Attack";
       case AttributActivation.petDealsDamage:
@@ -72,6 +100,22 @@ extension AttributActivationString on AttributActivation {
         return "When Pet Health Is At Value";
       case AttributActivation.healthLow:
         return "When Low Health";
+      case AttributActivation.shootingEnemy:
+        return "When Shooting At Enemy";
+      case AttributActivation.reloading:
+        return "When Reloading";
+      case AttributActivation.skillEnd:
+        return "When Skill End";
+      case AttributActivation.petReviveFl4k:
+        return "When Pet Revive FL4K";
+      case AttributActivation.moving:
+        return "While Moving";
+      case AttributActivation.still:
+        return "While Not Moving";
+      case AttributActivation.aboveHalfHealth:
+        return "When Above Half Health";
+      case AttributActivation.dealDamageOnNotTargetingTarget:
+        return "When Dealing Damage On Target Who Are Not Targeting FL4K";
       default:
         return "";
     }
@@ -94,6 +138,22 @@ AttributActivation parseAttributActivation(String value) {
       return AttributActivation.petHealthAtValue;
     case "healthLow":
       return AttributActivation.healthLow;
+    case "shootingEnemy":
+      return AttributActivation.shootingEnemy;
+    case "reloading":
+      return AttributActivation.reloading;
+    case "skillEnd":
+      return AttributActivation.skillEnd;
+    case "petReviveFl4k":
+      return AttributActivation.petReviveFl4k;
+    case "moving":
+      return AttributActivation.moving;
+    case "still":
+      return AttributActivation.still;
+    case "aboveHalfHealth":
+      return AttributActivation.aboveHalfHealth;
+    case "dealDamageOnNotTargetingTarget":
+      return AttributActivation.dealDamageOnNotTargetingTarget;
     default:
       return AttributActivation.unknown;
   }

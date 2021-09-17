@@ -36,7 +36,7 @@ class _AttributsViewerState extends State<AttributsViewer> {
       for (var attrib in widget.attribs) {
         widgets.add(Flex(direction: Axis.horizontal, children: [
           Expanded(
-              flex: 2,
+              flex: 5,
               child: Text(attrib.name,
                   textAlign: TextAlign.right,
                   style: const TextStyle(
@@ -45,6 +45,7 @@ class _AttributsViewerState extends State<AttributsViewer> {
                       fontWeight: FontWeight.bold,
                       color: app_colors.textAttributColor))),
           Expanded(
+              flex: 4,
               child: Text(
                   " : ${_checkAndFormatPositivePercentage("${attrib.value} ${attrib.unit.ext}", attrib.unit, attrib.value)}",
                   style: Theme.of(context).textTheme.bodyText1))

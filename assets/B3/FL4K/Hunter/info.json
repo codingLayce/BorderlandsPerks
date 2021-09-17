@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Rakk Attack!",
+        "treeLevel": 0,
+        "image": "assets/B3/FL4K/Hunter/images/RakkAttack.png",
+        "perkType": "ActionSkill",
+        "id": "F_Hunter_0",
+        "maxPoints": 1,
+        "description": ["Summons two rakk which dive-bomb enemies. Has multiple charges."],
+        "attributs": [
+            {
+                "name": "Cooldown",
+                "unit": "seconds",
+                "activation": "skill",
+                "values": [35]
+            },
+            {
+                "name": "Damage",
+                "unit": "flat",
+                "activation": "skill",
+                "values": [35]
+            }
+        ]
+    },
+    {
+        "name": "Spiderant Centurion",
+        "treeLevel": 0,
+        "image": "assets/B3/FL4K/Hunter/images/SpiderantCenturion.png",
+        "perkType": "Pet",
+        "id": "F_Hunter_1",
+        "maxPoints": 1,
+        "description": ["Summons a pet spiderant. FL4K constantly regenerates health while accompanied by the spiderant.",
+                        "Attack Command: the spiderant charges into enemies."],
+        "attributs": [
+            {
+                "name": "Health Regeneration",
+                "unit": "precentageOfMaxHealth",
+                "activation": "always",
+                "values": [1]
+            }
+        ]
+    }
+]
