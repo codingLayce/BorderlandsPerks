@@ -1,14 +1,17 @@
-import 'package:borderlands_perks/services/perks_manager.dart';
+import 'package:borderlands_perks/models/build.dart';
+import 'package:borderlands_perks/services/build_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
 
 class GlobalPerks extends StatelessWidget {
-  const GlobalPerks({Key? key}) : super(key: key);
+  final Build buildRef;
+
+  const GlobalPerks({required this.buildRef, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PerksManager>(builder: (context, state, child) {
+    return Consumer<BuildManager>(builder: (context, state, child) {
       return Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
@@ -18,16 +21,16 @@ class GlobalPerks extends StatelessWidget {
           child: RichText(
               text: TextSpan(children: [
             TextSpan(
-                text: "${state.skillPoints}",
+                text: "${buildRef.skillPoints}",
                 style: TextStyle(
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w700,
                     fontSize: 16,
-                    color: state.skillPoints == 0
+                    color: buildRef.skillPoints == 0
                         ? Colors.red
                         : app_colors.textAttributColor)),
             TextSpan(
-                text: " / ${state.maxSkillPoints}",
+                text: " / ${buildRef.maxSkillPoints}",
                 style: const TextStyle(
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w700,

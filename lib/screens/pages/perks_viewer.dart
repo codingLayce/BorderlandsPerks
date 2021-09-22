@@ -1,20 +1,21 @@
+import 'package:borderlands_perks/models/build.dart';
 import 'package:borderlands_perks/models/character.dart';
 import 'package:borderlands_perks/models/perks.dart';
 import 'package:borderlands_perks/screens/components/perk_viewer.dart';
-import 'package:borderlands_perks/services/perks_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
-import 'package:provider/provider.dart';
 
 class PerksViewer extends StatefulWidget {
   final Character character;
   final Perks perks;
   final int tree;
+  final Build build;
 
   const PerksViewer(
       {required this.character,
       required this.perks,
       required this.tree,
+      required this.build,
       Key? key})
       : super(key: key);
 
@@ -25,11 +26,9 @@ class PerksViewer extends StatefulWidget {
 class _PerksViewer extends State<PerksViewer> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<PerksManager>(builder: (context, state, child) {
-      return Container(
-          decoration: BoxDecoration(color: _getBackgroundColor()),
-          child: Align(alignment: Alignment.center, child: _buildPerkTree()));
-    });
+    return Container(
+        decoration: BoxDecoration(color: _getBackgroundColor()),
+        child: Align(alignment: Alignment.center, child: _buildPerkTree()));
   }
 
   Widget _buildPerkTree() {
@@ -41,8 +40,10 @@ class _PerksViewer extends State<PerksViewer> {
           child: Row(
               children: List.generate(
                   levelPerks.length,
-                  (index) =>
-                      PerkViewer(perk: levelPerks[index], tree: widget.tree))));
+                  (index) => PerkViewer(
+                      perk: levelPerks[index],
+                      tree: widget.tree,
+                      build: widget.build))));
     });
 
     return SingleChildScrollView(

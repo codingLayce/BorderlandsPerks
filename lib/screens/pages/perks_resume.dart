@@ -1,46 +1,45 @@
 import 'package:borderlands_perks/models/active_attribut.dart';
 import 'package:borderlands_perks/models/attribut.dart';
-import 'package:borderlands_perks/models/character.dart';
 import 'package:borderlands_perks/screens/components/attributs_viewer.dart';
-import 'package:borderlands_perks/services/perks_manager.dart';
+import 'package:borderlands_perks/models/build.dart';
+import 'package:borderlands_perks/services/build_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
 
 class PerksResume extends StatelessWidget {
-  final Character character;
+  final Build buildRef;
 
-  const PerksResume({required this.character, Key? key}) : super(key: key);
+  const PerksResume({required this.buildRef, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<PerksManager>(builder: (context, state, child) {
+    return Consumer<BuildManager>(builder: (context, state, child) {
       return Container(
           padding: const EdgeInsets.all(10),
           decoration:
               const BoxDecoration(color: app_colors.primaryBackgroundColor),
           child: Align(
               alignment: Alignment.topCenter,
-              child:
-                  SingleChildScrollView(child: _buildResume(context, state))));
+              child: SingleChildScrollView(child: _buildResume(context))));
     });
   }
 
-  _buildResume(BuildContext context, PerksManager state) {
+  _buildResume(BuildContext context) {
     return Flex(direction: Axis.vertical, children: [
       _spacing(),
-      Text("${character.name}'s Build - Attributes resume",
+      Text("${buildRef.name} Build - Attributes resume",
           style: Theme.of(context).textTheme.headline1),
       _spacing(),
-      _attributs(state, AttributActivation.always),
+      _attributs(AttributActivation.always),
       _spacing(),
-      _attributs(state, AttributActivation.skill)
+      _attributs(AttributActivation.skill)
     ]);
   }
 
-  _attributs(PerksManager state, AttributActivation activation) {
+  _attributs(AttributActivation activation) {
     List<ActiveAttribut> attribs =
-        _extractGivenActivation(state.getActiveAttributs(), activation);
+        _extractGivenActivation(buildRef.getActiveAttributs(), activation);
 
     if (attribs.isEmpty) {
       return Container();

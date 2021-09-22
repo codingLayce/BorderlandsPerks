@@ -1,8 +1,9 @@
 import 'package:borderlands_perks/models/perk.dart';
 import 'package:borderlands_perks/screens/components/zoom_animation_wrapper.dart';
 import 'package:borderlands_perks/screens/components/error.dart';
+import 'package:borderlands_perks/models/build.dart';
+import 'package:borderlands_perks/services/build_manager.dart';
 import 'package:borderlands_perks/services/business_exception.dart';
-import 'package:borderlands_perks/services/perks_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
@@ -11,8 +12,10 @@ import 'package:borderlands_perks/models/attribut.dart';
 class PerkViewer extends StatefulWidget {
   final Perk perk;
   final int tree;
+  final Build build;
 
-  const PerkViewer({required this.perk, required this.tree, Key? key})
+  const PerkViewer(
+      {required this.perk, required this.tree, required this.build, Key? key})
       : super(key: key);
 
   @override
@@ -22,12 +25,13 @@ class PerkViewer extends StatefulWidget {
 class _PerkViewerState extends State<PerkViewer> {
   @override
   Widget build(BuildContext context) {
-    return Consumer<PerksManager>(builder: (context, state, child) {
+    return Consumer<BuildManager>(builder: (context, state, child) {
       return Expanded(
           child: ZoomAnimationWrapper(
               onTap: () {
                 try {
-                  state.assignSkillPoint(widget.perk, widget.tree);
+                  state.assignSkillPoint(
+                      widget.build, widget.perk, widget.tree);
                 } on BusinessException catch (exception) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       Error.getSnackBar(context, exception.error));
@@ -35,7 +39,8 @@ class _PerkViewerState extends State<PerkViewer> {
               },
               onDoubleTap: () {
                 try {
-                  state.removeSkillPoint(widget.perk, widget.tree);
+                  state.removeSkillPoint(
+                      widget.build, widget.perk, widget.tree);
                 } on BusinessException catch (exception) {
                   ScaffoldMessenger.of(context).showSnackBar(
                       Error.getSnackBar(context, exception.error));
@@ -45,13 +50,15 @@ class _PerkViewerState extends State<PerkViewer> {
                 showDialog(
                     context: context,
                     builder: (context) => Popover(
-                        perk: widget.perk, state: state, tree: widget.tree));
+                        perk: widget.perk,
+                        state: widget.build,
+                        tree: widget.tree));
               },
-              child: _perk(state)));
+              child: _perk(widget.build)));
     });
   }
 
-  _perk(PerksManager state) {
+  _perk(Build state) {
     int assignedPoints = state.getAssignedPoints(widget.perk.id, widget.tree);
 
     return Column(children: [
@@ -82,7 +89,7 @@ class _PerkViewerState extends State<PerkViewer> {
         child: Image.asset(widget.perk.image));
   }
 
-  _notSelectedPerk(PerksManager state) {
+  _notSelectedPerk(Build state) {
     if (state.isPerkLocked(widget.perk, widget.tree)) {
       return ColorFiltered(
           colorFilter: const ColorFilter.mode(
@@ -96,7 +103,7 @@ class _PerkViewerState extends State<PerkViewer> {
 
 class Popover extends StatelessWidget {
   final Perk perk;
-  final PerksManager state;
+  final Build state;
   final int tree;
 
   const Popover(
@@ -177,7 +184,7 @@ class Popover extends StatelessWidget {
     return Container();
   }
 
-  String _getValues(PerksManager state, Attribut attrib, bool next) {
+  String _getValues(Build state, Attribut attrib, bool next) {
     if (attrib.values.length == 1) {
       return _getFirstAttribValue(attrib);
     }
@@ -217,14 +224,14 @@ class Popover extends StatelessWidget {
         val, attrib.unit, attrib.values[0]);
   }
 
-  String _getCurrentAttribValue(PerksManager state, Attribut attrib) {
+  String _getCurrentAttribValue(Build state, Attribut attrib) {
     int level = state.getAssignedPoints(perk.id, tree);
     String val = "${attrib.values[level - 1]} ${attrib.unit.ext}";
     return _checkAndFormatPositivePercentage(
         val, attrib.unit, attrib.values[level - 1]);
   }
 
-  String _getNextAttribValue(PerksManager state, Attribut attrib) {
+  String _getNextAttribValue(Build state, Attribut attrib) {
     int level = state.getAssignedPoints(perk.id, tree);
     String val = "${attrib.values[level]} ${attrib.unit.ext}";
     return _checkAndFormatPositivePercentage(

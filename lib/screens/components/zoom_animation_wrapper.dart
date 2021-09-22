@@ -5,15 +5,17 @@ typedef OnTapCallback = void Function();
 
 class ZoomAnimationWrapper extends StatefulWidget {
   final Widget child;
-  final OnTapCallback onTap;
-  final OnTapCallback onDoubleTap;
-  final OnTapCallback onLongPress;
+  final OnTapCallback? onTap;
+  final OnTapCallback? onDoubleTap;
+  final OnTapCallback? onLongPress;
+  final bool disableDoubleTap;
 
   const ZoomAnimationWrapper(
       {required this.child,
-      required this.onTap,
-      required this.onDoubleTap,
-      required this.onLongPress,
+      this.onTap,
+      this.onDoubleTap,
+      this.onLongPress,
+      this.disableDoubleTap = false,
       Key? key})
       : super(key: key);
 
@@ -46,14 +48,23 @@ class _ZoomAnimationWrapper extends State<ZoomAnimationWrapper>
     return GestureDetector(
         onTap: () {
           _tapAnimationController.forward();
-          widget.onTap();
+          if (widget.onTap != null) {
+            widget.onTap!();
+          }
         },
         onDoubleTap: () {
+          if (widget.disableDoubleTap) {
+            return;
+          }
           _tapAnimationController.forward();
-          widget.onDoubleTap();
+          if (widget.onDoubleTap != null) {
+            widget.onDoubleTap!();
+          }
         },
         onLongPress: () {
-          widget.onLongPress();
+          if (widget.onLongPress != null) {
+            widget.onLongPress!();
+          }
         },
         child: AnimatedBuilder(
             animation: _tapAnimationController,
