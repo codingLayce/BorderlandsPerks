@@ -75,6 +75,8 @@ flutter:
     - assets/B3/FL4K/Stalker/info.json
     - assets/B3/FL4K/Hunter/images/
     - assets/B3/FL4K/Hunter/info.json
+    - assets/B3/FL4K/Trapper/info.json
+    - assets/B3/FL4K/Trapper/images/
 
   # To add assets to your application, add an assets section, like this:
   # assets:

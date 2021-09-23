@@ -48,7 +48,8 @@ extension CharacterLoader on Character {
     return [
       "$path/Master/info.json",
       "$path/Stalker/info.json",
-      "$path/Hunter/info.json"
+      "$path/Hunter/info.json",
+      "$path/Trapper/info.json"
     ];
   }
 }

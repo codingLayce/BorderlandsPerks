@@ -139,7 +139,7 @@
     {
         "name": "Hunter's Eye",
         "treeLevel": 2,
-        "image": "assets/B3/FL4K/Hunter/images/HunterEye.png",
+        "image": "assets/B3/FL4K/Hunter/images/HuntersEye.png",
         "perkType": "Passive",
         "id": "F_Hunter_6",
         "maxPoints": 5,
