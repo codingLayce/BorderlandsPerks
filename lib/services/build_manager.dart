@@ -34,6 +34,7 @@ class BuildManager extends ChangeNotifier {
   }
 
   void removeBuild(Build build) {
+    Storage().removeBuild(build.id);
     builds.remove(build);
 
     notifyListeners();

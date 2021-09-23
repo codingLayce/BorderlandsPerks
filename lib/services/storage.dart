@@ -58,5 +58,11 @@ class Storage {
         where: 'id = ?', whereArgs: [build.id]);
   }
 
+  Future<void> removeBuild(String id) async {
+    final db = await database;
+
+    await db.delete('builds', where: 'id = ?', whereArgs: [id]);
+  }
+
   Storage._internal();
 }
