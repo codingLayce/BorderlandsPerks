@@ -24,14 +24,18 @@ class _BuildsViewerState extends State<BuildsViewer> {
     return Scaffold(
         backgroundColor: app_colors.primaryBackgroundColor,
         appBar: AppBar(title: const Text("Borderlands Perks")),
-        body: loading ? const CircularProgressIndicator() : _getBuildList(),
+        body: loading
+            ? const CircularProgressIndicator()
+            : _getBuildList(context),
         floatingActionButton: _getFloatingActionButton());
   }
 
-  _getBuildList() {
+  _getBuildList(BuildContext context) {
     return Consumer<BuildManager>(builder: (context, state, child) {
       if (!state.buildsRetrieved) {
         state.loadBuildsFromStorage();
+      } else if (state.builds.isEmpty) {
+        return _getNoBuildsWidget(context);
       }
 
       return state.buildsRetrieved
@@ -45,6 +49,12 @@ class _BuildsViewerState extends State<BuildsViewer> {
               child: CircularProgressIndicator(
                   color: app_colors.textAttributColor));
     });
+  }
+
+  _getNoBuildsWidget(BuildContext context) {
+    return Center(
+        child: Text("No builds ! Tap on the '+' icon to add a new build !",
+            style: Theme.of(context).textTheme.bodyText1));
   }
 
   _getBuildWidgets(BuildContext context, BuildManager state) {

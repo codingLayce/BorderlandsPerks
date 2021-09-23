@@ -39,5 +39,448 @@
                 "values": [1]
             }
         ]
+    },
+    {
+        "name": "Interplanetary Staker",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Hunter/images/InterplanetaryStalker.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_2",
+        "maxPoints": 5,
+        "description": ["Hunter Kill Skill. Killing an enemy grants a stack of Interplanetary Stalker which increases FL4K's damage and Pet Damage. Also grants a stacking unique bonus which stacks up to three times, depending on the type of enemy killed."],
+        "attributs": [
+            {
+                "name": "Damage",
+                "unit": "percentageStack",
+                "activation": "enemyKill",
+                "values": [2, 4, 6, 8, 10]
+            },
+            {
+                "name": "Pet Damage",
+                "unit": "percentageStack",
+                "activation": "enemyKill",
+                "values": [1, 2, 3, 4, 5]
+            },
+            {
+                "name": "Human Bonus - Action Skill Damage",
+                "unit": "percentageStack",
+                "activation": "enemyKill",
+                "values": [3, 6, 9, 12, 15]
+            },
+            {
+                "name": "Robot Bonus - Corrosive Damage",
+                "unit": "percentageStack",
+                "activation": "enemyKill",
+                "values": [1.5, 3, 4.5, 6, 7.5]
+            },
+            {
+                "name": "Beast Bonus - Movement Speed",
+                "unit": "percentageStack",
+                "activation": "enemyKill",
+                "values": [2, 3, 5, 6, 7]
+            }
+        ]
+    },
+    {
+        "name": "Leave No Trace",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Hunter/images/LeaveNoTrace.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_3",
+        "maxPoints": 3,
+        "description": ["When FL4K scores a critical hit, there is a chance for one ammo to be added to their magazine."],
+        "attributs": [
+            {
+                "name": "Chance To Add Ammo",
+                "unit": "percentage",
+                "activation": "criticalHit",
+                "values": [12, 24, 36]
+            }
+        ]
+    },
+    {
+        "name": "Second Intention",
+        "treeLevel": 1,
+        "image": "assets/B3/FL4K/Hunter/images/SecondIntention.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_4",
+        "maxPoints": 5,
+        "description": ["Hunter Kill Skill. Killing an enemy increases FL4K's reload speed for a few seconds. This bonus is greater for a critical kill."],
+        "attributs": [
+            {
+                "name": "Reload Speed",
+                "unit": "percentage",
+                "activation": "enemyKill",
+                "values": [3, 6, 8, 11, 13]
+            },
+            {
+                "name": "Critical Kill Reload Speed",
+                "unit": "percentage",
+                "activation": "enemyKill",
+                "values": [6, 11, 15, 19, 23]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "activation": "enemyKill",
+                "values": [5]
+            }
+        ]
+    },
+    {
+        "name": "Rakk Open a Cold One",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Hunter/images/RakkOpenAColdOne.png",
+        "perkType": "Augment",
+        "id": "F_Hunter_5",
+        "maxPoints": 1,
+        "description": ["Converts Rakk Attack!'s damage to cryo. Requires Rakk Attack!."]
+    },
+    {
+        "name": "Hunter's Eye",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Hunter/images/HunterEye.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_6",
+        "maxPoints": 5,
+        "description": ["Grants unique bonuses when fighting different types of enemies."],
+        "attributs": [
+            {
+                "name": "Critical Hit Damage vs. Humans",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [3, 6, 9, 12, 15]
+            },
+            {
+                "name": "Armor Damage vs. Robots",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [6, 12, 18, 24, 30]
+            },
+            {
+                "name": "Damage Reduction vs. Beasts",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [5.3, 10.1, 14.4, 18.3, 21.9]
+            }
+        ]
+    },
+    {
+        "name": "Head Count",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Hunter/images/HeadCount.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_7",
+        "maxPoints": 3,
+        "description": ["FL4K's critical hits have a chance to reduce Action Skill cooldown."],
+        "attributs": [
+            {
+                "name": "Cooldown Reduction",
+                "unit": "seconds",
+                "activation": "criticalHit",
+                "values": [-2]
+            },
+            {
+                "name": "Cooldown Reduction Chance",
+                "unit": "percentage",
+                "activation": "criticalHit",
+                "values": [10, 20, 30]
+            }
+        ]
+    },
+    {
+        "name": "Ambush Predator",
+        "treeLevel": 2,
+        "image": "assets/B3/FL4K/Hunter/images/AmbushPredator.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_8",
+        "maxPoints": 5,
+        "description": ["Increases FL4K's handling and critical damage when there are no enemies nearby."],
+        "attributs": [
+            {
+                "name": "Handling",
+                "unit": "percentage",
+                "activation": "noEnemiesNearby",
+                "values": [17, 29, 38, 44, 50]
+            },
+            {
+                "name": "Critical Hit Damage",
+                "unit": "percentage",
+                "activation": "noEnemiesNearby",
+                "values": [4, 8, 12, 16, 20]
+            }
+        ]
+    },
+    {
+        "name": "Falconer's Feast",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Hunter/images/FalconersFeast.png",
+        "perkType": "Augment",
+        "id": "F_Hunter_9",
+        "maxPoints": 1,
+        "description": ["FL4K regains health whenever Rakk Attack! damages an enemy. Requires Rakk Attack!."],
+        "attributs": [
+            {
+                "name": "Health Returned",
+                "unit": "precentageOfMaxHealth",
+                "activation": "skill",
+                "values": [7]
+            }
+        ]
+    },
+    {
+        "name": "Two F4ng",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Hunter/images/TwoF4ng.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_10",
+        "maxPoints": 5,
+        "description": ["FL4K gains a chance to fire one additional projectile with every shot."],
+        "attributs": [
+            {
+                "name": "Extra Projectile Chance",
+                "unit": "percentage",
+                "activation": "shootingEnemy",
+                "values": [5, 10, 15, 20, 25]
+            }
+        ]
+    },
+    {
+        "name": "Spiderant Scorcher",
+        "treeLevel": 3,
+        "image": "assets/B3/FL4K/Hunter/images/SpiderantScorcher.png",
+        "perkType": "Pet",
+        "id": "F_Hunter_11",
+        "maxPoints": 1,
+        "description": ["Pet spiderant is upgraded to Scorcher spiderant. The Scorcher occasionally deals incendiary damage to nearby enemies. FL4K constantly regenerates health and gains elemental resistance while accompanied by the Scorcher.",
+                        "Attack Command: the Scorcher charges into enemies."],
+        "attributs": [
+            {
+                "name": "Health Regeneration",
+                "unit": "percentageOfMaxHealthPerSeconds",
+                "activation": "always",
+                "values": [1]
+            },
+            {
+                "name": "Elemental Damage",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [10]
+            }
+        ]
+    },
+    {
+        "name": "Flock'N Load",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Hunter/images/FlockNLoad.png",
+        "perkType": "Augment",
+        "id": "F_Hunter_12",
+        "maxPoints": 1,
+        "description": ["Adds more rakk to Rakk Attack!. Requires Rakk Attack!."],
+        "attributs": [
+            {
+                "name": "Additional Rakk",
+                "unit": "flat",
+                "activation": "always",
+                "values": [2]
+            }
+        ]
+    },
+    {
+        "name": "Big Game",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Hunter/images/BigGame.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_13",
+        "maxPoints": 3,
+        "description": ["Increases effectiveness and duration of Hunter Skills."],
+        "attributs": [
+            {
+                "name": "Hunter Skill Effects",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [10, 20, 30]
+            },
+            {
+                "name": "Hunter Skill Duration",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [33, 67, 100]
+            }
+        ]
+    },
+    {
+        "name": "Big Game",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Hunter/images/BigGame.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_13",
+        "maxPoints": 3,
+        "description": ["Increases effectiveness and duration of Hunter Skills."],
+        "attributs": [
+            {
+                "name": "Hunter Skill Effects",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [10, 20, 30]
+            },
+            {
+                "name": "Hunter Skill Duration",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [33, 67, 100]
+            }
+        ]
+    },
+    {
+        "name": "The Most Dangerous Game",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Hunter/images/TheMostDangerousGame.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_14",
+        "maxPoints": 3,
+        "description": ["Hunter Kill Skill. FL4K gains critical hit damage, gun damage, and weapon handling for a time after killing a Badass or stronger enemy. Additionally, their Pet gains increased pet damage for a long time"],
+        "attributs": [
+            {
+                "name": "Critical Hit Damage",
+                "unit": "percentage",
+                "activation": "skillKill",
+                "values": [8, 17, 25]
+            },
+            {
+                "name": "Gun Damage",
+                "unit": "percentage",
+                "activation": "skillKill",
+                "values": [3.3, 6.7, 10]
+            },
+            {
+                "name": "Handling",
+                "unit": "percentage",
+                "activation": "skillKill",
+                "values": [14.3, 25, 33.3]
+            },
+            {
+                "name": "Pet Damage",
+                "unit": "percentage",
+                "activation": "skillKill",
+                "values": [9, 18, 27]
+            },
+            {
+                "name": "Duration",
+                "unit": "seconds",
+                "activation": "skillKill",
+                "values": [120]
+            }
+        ]
+    },
+    {
+        "name": "Spirderant Countess",
+        "treeLevel": 4,
+        "image": "assets/B3/FL4K/Hunter/images/SpiderantCountess.png",
+        "perkType": "Pet",
+        "id": "F_Hunter_15",
+        "maxPoints": 1,
+        "description": ["Pet spiderant is upgraded to Countess spiderant. FL4K constantly regenerates health and gains damage reduction while accompanied by the Countess.",
+                        "Attack Command: the Countess burrows then reemerges, dealing corrosive damage in an area."],
+        "attributs": [
+            {
+                "name": "Health Regeneration",
+                "unit": "percentageOfMaxHealthPerSeconds",
+                "activation": "always",
+                "values": [1]
+            },
+            {
+                "name": "Damage Reduction",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [5]
+            }
+        ]
+    },
+    {
+        "name": "Rakkcelerate",
+        "treeLevel": 5,
+        "image": "assets/B3/FL4K/Hunter/images/Rakkcelerate.png",
+        "perkType": "Augment",
+        "id": "F_Hunter_16",
+        "maxPoints": 1,
+        "description": ["Rakk Attack! has increased cooldown rate and gains one additional charge. Requires Rakk Attack!."],
+        "attributs": [
+            {
+                "name": "Cooldown Rate",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [20]
+            },
+            {
+                "name": "Skill Charges",
+                "unit": "flat",
+                "activation": "always",
+                "values": [1]
+            }
+        ]
+    },
+    {
+        "name": "Galactic Shadow",
+        "treeLevel": 5,
+        "image": "assets/B3/FL4K/Hunter/images/GalacticShadow.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_17",
+        "maxPoints": 1,
+        "description": ["Increases FL4K's critical hit damage and makes enemies less likely to attack them."],
+        "attributs": [
+            {
+                "name": "Critical Hit Damage",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [15]
+            }
+        ]
+    },
+    {
+        "name": "Grim Harvest",
+        "treeLevel": 5,
+        "image": "assets/B3/FL4K/Hunter/images/GrimHarvest.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_18",
+        "maxPoints": 5,
+        "description": ["Increases FL4K's gun damage, Action Skill damage, and Pet Damage."],
+        "attributs": [
+            {
+                "name": "Gun Damage",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [3, 6, 9, 12, 15]
+            },
+            {
+                "name": "Action Skill Damage",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [5, 10, 15, 20, 25]
+            },
+            {
+                "name": "Pet Damage",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [7, 14, 21, 28, 35]
+            }
+        ]
+    },
+    {
+        "name": "Megavore",
+        "treeLevel": 6,
+        "image": "assets/B3/FL4K/Hunter/images/Megavore.png",
+        "perkType": "Passive",
+        "id": "F_Hunter_19",
+        "maxPoints": 1,
+        "description": ["Allows FL4K to score critical hits with weapons against any part of an enemy."],
+        "attributs": [
+            {
+                "name": "Critical Hit Change",
+                "unit": "percentage",
+                "activation": "always",
+                "values": [20]
+            }
+        ]
     }
 ]

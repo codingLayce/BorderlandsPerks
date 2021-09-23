@@ -9,6 +9,7 @@ enum AttributUnitType {
   percentagePerHit,
   percentageOfMissingHealth,
   precentageOfMaxHealth,
+  percentageOfMaxHealthPerSeconds,
   unknown
 }
 
@@ -31,6 +32,8 @@ extension AttributUnitTypeTerminaison on AttributUnitType {
         return "% of missing health";
       case AttributUnitType.precentageOfMaxHealth:
         return "% of max health";
+      case AttributUnitType.percentageOfMaxHealthPerSeconds:
+        return "% of max health per seconds";
       default:
         return "";
     }
@@ -59,6 +62,8 @@ AttributUnitType parseAttributUnitType(String value) {
       return AttributUnitType.percentageOfMissingHealth;
     case "precentageOfMaxHealth":
       return AttributUnitType.precentageOfMaxHealth;
+    case "percentageOfMaxHealthPerSeconds":
+      return AttributUnitType.percentageOfMaxHealthPerSeconds;
     default:
       return AttributUnitType.unknown;
   }
@@ -66,6 +71,7 @@ AttributUnitType parseAttributUnitType(String value) {
 
 enum AttributActivation {
   skill,
+  skillKill,
   always,
   firstPetAttack,
   petDealsDamage,
@@ -80,6 +86,8 @@ enum AttributActivation {
   still,
   aboveHalfHealth,
   dealDamageOnNotTargetingTarget,
+  criticalHit,
+  noEnemiesNearby,
   unknown
 }
 
@@ -116,6 +124,12 @@ extension AttributActivationString on AttributActivation {
         return "When Above Half Health";
       case AttributActivation.dealDamageOnNotTargetingTarget:
         return "When Dealing Damage On Target Who Are Not Targeting FL4K";
+      case AttributActivation.criticalHit:
+        return "When Scores A Critical Hit";
+      case AttributActivation.noEnemiesNearby:
+        return "When No Enemy Nearby";
+      case AttributActivation.skillKill:
+        return "When Hunter Skill Kill";
       default:
         return "";
     }
@@ -154,6 +168,12 @@ AttributActivation parseAttributActivation(String value) {
       return AttributActivation.aboveHalfHealth;
     case "dealDamageOnNotTargetingTarget":
       return AttributActivation.dealDamageOnNotTargetingTarget;
+    case "criticalHit":
+      return AttributActivation.criticalHit;
+    case "noEnemiesNearby":
+      return AttributActivation.noEnemiesNearby;
+    case "skillKill":
+      return AttributActivation.skillKill;
     default:
       return AttributActivation.unknown;
   }
