@@ -6,19 +6,55 @@ import 'package:borderlands_perks/models/character.dart';
 import 'package:borderlands_perks/models/perk.dart';
 import 'package:borderlands_perks/models/perks.dart';
 import 'package:borderlands_perks/services/business_exception.dart';
+import 'package:borderlands_perks/services/storage.dart';
 import 'package:flutter/services.dart';
 
 const int maxSkillsPoint = 70;
 const int maxAugmentSkills = 3;
 
+Character parseCharacter(String value) {
+  switch (value) {
+    case "FL4K":
+      return Character.fl4k;
+    case "AMARA":
+      return Character.amara;
+    case "MOZE":
+      return Character.moze;
+    case "ZANE":
+      return Character.zane;
+    default:
+      return Character.none;
+  }
+}
+
 class Build {
   List<SkillTree> trees = [];
   final String name;
   final Character character;
+  final String id;
 
+  bool modified = false;
   bool perksLoaded = false;
 
-  Build({required this.name, required this.character});
+  Build({required this.name, required this.character, required this.id});
+
+  static Future<Build> fromJson(dynamic json) async {
+    Character character = parseCharacter(json['character']);
+    Build build = Build(
+        name: json['name'] as String, character: character, id: json['id']);
+    await build.loadPerks();
+
+    var trees = jsonDecode(json['trees']) as List;
+    for (int i = 0; i < trees.length; i++) {
+      var selectedPerks =
+          jsonDecode(trees[i]['selectedPerks']) as Map<String, dynamic>;
+      selectedPerks.forEach((key, value) {
+        build.trees[i].setSelectedPerks(selectedPerks);
+      });
+    }
+
+    return build;
+  }
 
   int get skillPoints {
     int points = maxSkillPoints;
@@ -35,6 +71,24 @@ class Build {
   int get maxSkillPoints => maxSkillsPoint;
 
   /* ---------- PUBLIC ---------- */
+
+  Future<void> save() async {
+    if (await Storage().exists(id)) {
+      await Storage().updateBuild(this);
+    } else {
+      await Storage().insertBuild(this);
+    }
+    modified = false;
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'character': character.name,
+      'trees': jsonEncode(trees)
+    };
+  }
 
   Future<void> loadPerks() async {
     List<String> paths = character.getPaths();
@@ -86,10 +140,12 @@ class Build {
     }
 
     trees[tree].assignSkillPoint(perk, skillPoints);
+    modified = true;
   }
 
   void removeSkillPoint(Perk perk, int tree) {
     trees[tree].removeSkillPoint(perk);
+    modified = true;
   }
 
   List<ActiveAttribut> getActiveAttributs() {
@@ -134,7 +190,7 @@ class Build {
 
 class SkillTree {
   final Perks perks;
-  final Map<String, int> _selectedPerks = <String, int>{};
+  Map<String, int> _selectedPerks = <String, int>{};
 
   int usedPoints = 0;
 
@@ -143,6 +199,16 @@ class SkillTree {
   int get _usedPointsOnPassiveSkills => _calcUsedPointsOnPassiveSkills();
 
   /* ---------- PUBLIC ---------- */
+
+  void setSelectedPerks(Map<String, dynamic> map) {
+    _selectedPerks = Map.from(map);
+    usedPoints =
+        _selectedPerks.values.reduce((value, element) => value + element);
+  }
+
+  Map toJson() {
+    return {'selectedPerks': jsonEncode(_selectedPerks)};
+  }
 
   void removeSkillPoint(Perk perk) {
     if (!_selectedPerks.containsKey(perk.id)) {

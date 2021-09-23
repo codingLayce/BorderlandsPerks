@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
 import 'package:provider/provider.dart';
 import 'package:borderlands_perks/models/character.dart';
+import 'package:uuid/uuid.dart';
 
 class BuildsViewer extends StatefulWidget {
   const BuildsViewer({Key? key}) : super(key: key);
@@ -29,12 +30,20 @@ class _BuildsViewerState extends State<BuildsViewer> {
 
   _getBuildList() {
     return Consumer<BuildManager>(builder: (context, state, child) {
-      return Container(
-          width: double.infinity,
-          margin: const EdgeInsets.all(15),
-          child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: _getBuildWidgets(context, state)));
+      if (!state.buildsRetrieved) {
+        state.loadBuildsFromStorage();
+      }
+
+      return state.buildsRetrieved
+          ? Container(
+              width: double.infinity,
+              margin: const EdgeInsets.all(15),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: _getBuildWidgets(context, state)))
+          : const Center(
+              child: CircularProgressIndicator(
+                  color: app_colors.textAttributColor));
     });
   }
 
@@ -129,7 +138,8 @@ class _BuildsViewerState extends State<BuildsViewer> {
               context: context,
               builder: (context) {
                 return AddBuildDialog(callback: (name, character) {
-                  Build build = Build(name: name, character: character);
+                  Build build = Build(
+                      name: name, character: character, id: const Uuid().v1());
                   state.addBuild(build);
 
                   Navigator.pop(context);

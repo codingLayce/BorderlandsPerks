@@ -1,5 +1,6 @@
 import 'package:borderlands_perks/models/perks.dart';
 import 'package:borderlands_perks/screens/components/global_perks.dart';
+import 'package:borderlands_perks/screens/components/info.dart';
 import 'package:borderlands_perks/screens/pages/perks_resume.dart';
 import 'package:borderlands_perks/screens/pages/perks_viewer.dart';
 import 'package:borderlands_perks/models/build.dart';
@@ -28,32 +29,72 @@ class _CharacterViewer extends State<BuildViewer> {
         state.load(widget.build);
       }
 
-      List<Widget> views = [];
-      views.add(PerksResume(buildRef: widget.build));
-      for (int i = 0; i < 4; i++) {
-        Perks? perks = widget.build.getPerks(i);
-        if (perks != null) {
-          views.add(PerksViewer(
-              character: widget.build.character,
-              perks: perks,
-              tree: i,
-              build: widget.build));
-        }
-      }
-
-      return Scaffold(
-        backgroundColor: app_colors.primaryBackgroundColor,
-        appBar: AppBar(
-            title: Text("Build ${widget.build.name}",
-                style: Theme.of(context).textTheme.headline1)),
-        body: !widget.build.isLoaded
-            ? const CircularProgressIndicator()
-            : GFFloatingWidget(
-                child: GlobalPerks(buildRef: widget.build),
-                body: PageView(controller: controller, children: views),
-                verticalPosition: MediaQuery.of(context).size.height * 0.80,
-                horizontalPosition: 10),
-      );
+      return WillPopScope(
+          onWillPop: () async {
+            if (widget.build.modified) {
+              return await showDialog(
+                  context: context, builder: (context) => _getConfirmDialog());
+            }
+            return true;
+          },
+          child: Scaffold(
+            backgroundColor: app_colors.primaryBackgroundColor,
+            appBar: AppBar(
+                actions: [
+                  IconButton(
+                      icon: const Icon(Icons.save_outlined),
+                      onPressed: widget.build.modified
+                          ? () async {
+                              state.save(widget.build);
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  Info.getSnackBar(
+                                      context, "Build saved successfuly !"));
+                            }
+                          : null)
+                ],
+                title: Text("Build ${widget.build.name}",
+                    style: Theme.of(context).textTheme.headline1)),
+            body: !widget.build.isLoaded
+                ? const CircularProgressIndicator()
+                : GFFloatingWidget(
+                    child: GlobalPerks(buildRef: widget.build),
+                    body: PageView(
+                        controller: controller, children: _getPerksViewers()),
+                    verticalPosition: MediaQuery.of(context).size.height * 0.80,
+                    horizontalPosition: 10),
+          ));
     });
+  }
+
+  _getConfirmDialog() {
+    return AlertDialog(
+        title: const Text("Quitter"),
+        content: const Text(
+            "Vous n'avez pas sauvegardé depuis votre dernière modification !\nÊtes vous sûr de vouloir quitter ?"),
+        actions: [
+          TextButton(
+              child: const Text("NON", style: TextStyle(color: Colors.red)),
+              onPressed: () => Navigator.pop(context, false)),
+          TextButton(
+              child: const Text("OUI",
+                  style: TextStyle(color: app_colors.textAttributColor)),
+              onPressed: () => Navigator.pop(context, true))
+        ]);
+  }
+
+  _getPerksViewers() {
+    List<Widget> views = [];
+    views.add(PerksResume(buildRef: widget.build));
+    for (int i = 0; i < 4; i++) {
+      Perks? perks = widget.build.getPerks(i);
+      if (perks != null) {
+        views.add(PerksViewer(
+            character: widget.build.character,
+            perks: perks,
+            tree: i,
+            build: widget.build));
+      }
+    }
+    return views;
   }
 }

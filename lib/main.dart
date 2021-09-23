@@ -1,10 +1,12 @@
 import 'package:borderlands_perks/screens/builds_viewer.dart';
 import 'package:borderlands_perks/services/build_manager.dart';
+import 'package:borderlands_perks/services/storage.dart';
 import 'package:flutter/material.dart';
 import 'package:borderlands_perks/common/app_colors.dart' as app_colors;
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  await Storage().init();
   runApp(const MyApp());
 }
 

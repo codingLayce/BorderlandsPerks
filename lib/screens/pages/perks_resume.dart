@@ -28,8 +28,7 @@ class PerksResume extends StatelessWidget {
   _buildResume(BuildContext context) {
     return Flex(direction: Axis.vertical, children: [
       _spacing(),
-      Text("${buildRef.name} Build - Attributes resume",
-          style: Theme.of(context).textTheme.headline1),
+      Text("Attributes resume", style: Theme.of(context).textTheme.headline1),
       _spacing(),
       _attributs(AttributActivation.always),
       _spacing(),
