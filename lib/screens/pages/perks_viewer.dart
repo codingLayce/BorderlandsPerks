@@ -26,6 +26,14 @@ class PerksViewer extends StatefulWidget {
 class _PerksViewer extends State<PerksViewer> {
   @override
   Widget build(BuildContext context) {
+    if (widget.tree == 3) {
+      return Container(
+          decoration: BoxDecoration(color: _getBackgroundColor()),
+          child: Center(
+              child: Text("WORK IN PROGRESS",
+                  style: Theme.of(context).textTheme.headline2)));
+    }
+
     return Container(
         decoration: BoxDecoration(color: _getBackgroundColor()),
         child: Align(alignment: Alignment.center, child: _buildPerkTree()));

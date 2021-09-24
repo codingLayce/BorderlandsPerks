@@ -70,7 +70,7 @@ class _CharacterViewer extends State<BuildViewer> {
     return AlertDialog(
         title: const Text("Quitter"),
         content: const Text(
-            "Vous n'avez pas sauvegardé depuis votre dernière modification !\nÊtes vous sûr de vouloir quitter ?"),
+            "Attention ! Toute modification non sauvegardée sera perdue à la fermeture de l'application !\nÊtes vous sûr de vouloir quitter ?"),
         actions: [
           TextButton(
               child: const Text("NON", style: TextStyle(color: Colors.red)),
